@@ -1,0 +1,24 @@
+# 环境与密钥
+.env
+*.env
+node_modules/
+dist/
+
+# 数据与中间产物（版权/隐私/大体积）
+subtitles/
+subtitles.zip
+subtitles_screened/
+example_QQ_json/
+expert_methodology_json_238/
+expert_methodology_json_low_redo/
+sample-qq-export.json
+
+# 第三方工具副本（各自独立仓库）
+ChatLab/
+nuwa-skill/
+qq-chat-exporter-6.2.10/
+bilibili-ai-subtitle/
+
+# 系统
+Thumbs.db
+.DS_Store

@@ -1,0 +1,27 @@
+[
+  {
+    "source": {
+      "platform": "bilibili",
+      "video_id": "BV1yL17BNEhR",
+      "title": "",
+      "time_range": "",
+      "original_file": "BV1yL17BNEhR.txt"
+    },
+    "case": {
+      "has_valid_case": false,
+      "relationship_stage": "无法确定",
+      "core_question": ""
+    },
+    "candidate_methods": [],
+    "quality_control": {
+      "missing_context": [
+        "未识别到完整的恋爱案例与可核验的专家方法论链条"
+      ],
+      "overall_extraction_confidence": "low",
+      "reviewer_notes": [
+        "其他（同学故事与社会观察）",
+        "原文主要内容未满足“恋爱案例事实—专家分析—可迁移行动”三部分同时成立的要求。"
+      ]
+    }
+  }
+]

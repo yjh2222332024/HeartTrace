@@ -1,0 +1,1363 @@
+{
+  "summary": {
+    "total_files": 68,
+    "valid_cases": 57,
+    "invalid_files": 11
+  },
+  "statistics": {
+    "method_names": {
+      "将情绪托付从单一对象分散到现实支持系统": 2,
+      "把明确拒绝转化为停止追求的决策点": 5,
+      "用关系对话替代长期猜测": 7,
+      "以同意、尊重和可退出性检查关系边界": 13,
+      "从重复争吵中识别需求与责任问题": 4,
+      "先建立可持续生活再进入关系": 8,
+      "用持续互惠而非单一热情信号判断兴趣": 6,
+      "以低压力邀约逐级推进关系": 5,
+      "把背叛事实与关系去留分开处理": 3,
+      "用行为可改变性评估是否止损": 3,
+      "以旧问题是否改变而非想念评估复合": 1
+    },
+    "method_types": {
+      "自我状态调整": 2,
+      "止损决策": 11,
+      "关系定位": 7,
+      "边界设立": 13,
+      "沟通修复": 4,
+      "心态建设": 8,
+      "兴趣识别": 6,
+      "关系推进": 5,
+      "复合评估": 1
+    },
+    "safety_levels": {
+      "danger": 12,
+      "caution": 23,
+      "normal": 22
+    },
+    "relationship_stages": {
+      "单方付出 / 朋友区 / 备胎式关系": 2,
+      "追求、表白或单恋": 13,
+      "暧昧或关系确认阶段": 14,
+      "分手后 / 断联": 12,
+      "长期关系 / 婚恋选择": 2,
+      "恋爱关系中": 7,
+      "线上认识或初步接触": 3,
+      "异地或聚少离多": 3,
+      "复合评估": 1
+    },
+    "signal_categories": {
+      "boundary_violation": 28,
+      "mixed_cue": 37,
+      "rejection_cue": 43,
+      "healthy_cue": 28,
+      "interest_cue": 42,
+      "controlling_cue": 13,
+      "avoidant_cue": 9,
+      "sunk_cost_cue": 6
+    }
+  },
+  "all_methods": [
+    {
+      "file": "BV112ieYKEYM.json",
+      "bv": "BV112ieYKEYM",
+      "method_id": "M1",
+      "method_name": "将情绪托付从单一对象分散到现实支持系统",
+      "method_type": "自我状态调整",
+      "applicable_scene": "适用于“安全感 / 患得患失 / 托付心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "当恋爱被当成填补空虚、维持生存感或唯一情绪出口时，关系需求可能超过任何伴侣能稳定承受的范围。",
+      "suggested_actions": [
+        "把情绪支持分散到可信朋友、家人、规律作息和专业支持",
+        "在情绪稳定后再评估是否真正欣赏具体的人",
+        "减少用高频确认、占有或牺牲换安全感"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "mixed_cue"
+      ],
+      "relationship_stage": "单方付出 / 朋友区 / 备胎式关系",
+      "case_type": "安全感 / 患得患失 / 托付心态"
+    },
+    {
+      "file": "BV11wEQzmEKJ.json",
+      "bv": "BV11wEQzmEKJ",
+      "method_id": "M1",
+      "method_name": "把明确拒绝转化为停止追求的决策点",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“被拒绝后如何自处”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "被拒绝后如何自处"
+    },
+    {
+      "file": "BV13qmNBJEWW.json",
+      "bv": "BV13qmNBJEWW",
+      "method_id": "M1",
+      "method_name": "把明确拒绝转化为停止追求的决策点",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“被拒绝后如何自处”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "被拒绝后如何自处"
+    },
+    {
+      "file": "BV14JXwYpEK1.json",
+      "bv": "BV14JXwYpEK1",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV159BxBdEc8.json",
+      "bv": "BV159BxBdEc8",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "avoidant_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV16p9fY6Epx.json",
+      "bv": "BV16p9fY6Epx",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "长期关系 / 婚恋选择",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV16qUyB1E11.json",
+      "bv": "BV16qUyB1E11",
+      "method_id": "M1",
+      "method_name": "从重复争吵中识别需求与责任问题",
+      "method_type": "沟通修复",
+      "applicable_scene": "适用于“恋爱中的冲突与沟通”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+      "suggested_actions": [
+        "把争执改写为可观察的问题、各自需求和具体请求",
+        "约定谁在何时完成什么，并在约定周期后复盘",
+        "同居冲突严重时先建立临时空间和沟通时段"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "恋爱中的冲突与沟通"
+    },
+    {
+      "file": "BV19DCwBMEoA.json",
+      "bv": "BV19DCwBMEoA",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1aiSJBPEm3.json",
+      "bv": "BV1aiSJBPEm3",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1aJknBEEzo.json",
+      "bv": "BV1aJknBEEzo",
+      "method_id": "M1",
+      "method_name": "将情绪托付从单一对象分散到现实支持系统",
+      "method_type": "自我状态调整",
+      "applicable_scene": "适用于“安全感 / 患得患失 / 托付心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "当恋爱被当成填补空虚、维持生存感或唯一情绪出口时，关系需求可能超过任何伴侣能稳定承受的范围。",
+      "suggested_actions": [
+        "把情绪支持分散到可信朋友、家人、规律作息和专业支持",
+        "在情绪稳定后再评估是否真正欣赏具体的人",
+        "减少用高频确认、占有或牺牲换安全感"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "安全感 / 患得患失 / 托付心态"
+    },
+    {
+      "file": "BV1anknBmE7v.json",
+      "bv": "BV1anknBmE7v",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1BjeUzvE4a.json",
+      "bv": "BV1BjeUzvE4a",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1BqkvBPEwv.json",
+      "bv": "BV1BqkvBPEwv",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "线上认识或初步接触",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1BSiBBFE1U.json",
+      "bv": "BV1BSiBBFE1U",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1BzqKB6EdF.json",
+      "bv": "BV1BzqKB6EdF",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "avoidant_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1c7U1BJEie.json",
+      "bv": "BV1c7U1BJEie",
+      "method_id": "M1",
+      "method_name": "把明确拒绝转化为停止追求的决策点",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“被拒绝后如何自处”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "被拒绝后如何自处"
+    },
+    {
+      "file": "BV1DNyVBaEte.json",
+      "bv": "BV1DNyVBaEte",
+      "method_id": "M1",
+      "method_name": "以低压力邀约逐级推进关系",
+      "method_type": "关系推进",
+      "applicable_scene": "适用于“如何推进关系 / 表白时机”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "异地或聚少离多",
+      "case_type": "如何推进关系 / 表白时机"
+    },
+    {
+      "file": "BV1g3PtzWEtJ.json",
+      "bv": "BV1g3PtzWEtJ",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1i1UyBgEjW.json",
+      "bv": "BV1i1UyBgEjW",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1iDfwYXEuT.json",
+      "bv": "BV1iDfwYXEuT",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1J8TczTEB7.json",
+      "bv": "BV1J8TczTEB7",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1m3yVBtEC4.json",
+      "bv": "BV1m3yVBtEC4",
+      "method_id": "M1",
+      "method_name": "以低压力邀约逐级推进关系",
+      "method_type": "关系推进",
+      "applicable_scene": "适用于“如何推进关系 / 表白时机”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "如何推进关系 / 表白时机"
+    },
+    {
+      "file": "BV1MAB4BSE2q.json",
+      "bv": "BV1MAB4BSE2q",
+      "method_id": "M1",
+      "method_name": "以低压力邀约逐级推进关系",
+      "method_type": "关系推进",
+      "applicable_scene": "适用于“如何推进关系 / 表白时机”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "input_signals": [
+        "interest_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "如何推进关系 / 表白时机"
+    },
+    {
+      "file": "BV1mFBwByEUJ.json",
+      "bv": "BV1mFBwByEUJ",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1MwiGBTEe7.json",
+      "bv": "BV1MwiGBTEe7",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1MwsSzaEL1.json",
+      "bv": "BV1MwsSzaEL1",
+      "method_id": "M1",
+      "method_name": "把明确拒绝转化为停止追求的决策点",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“被拒绝后如何自处”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "avoidant_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "被拒绝后如何自处"
+    },
+    {
+      "file": "BV1MySJBZEjU.json",
+      "bv": "BV1MySJBZEjU",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "avoidant_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1n2mHB7EzQ.json",
+      "bv": "BV1n2mHB7EzQ",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1oAmBBDEaK.json",
+      "bv": "BV1oAmBBDEaK",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "controlling_cue",
+        "rejection_cue",
+        "mixed_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1P9SJBQEgg.json",
+      "bv": "BV1P9SJBQEgg",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "线上认识或初步接触",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1pgBoB4Esm.json",
+      "bv": "BV1pgBoB4Esm",
+      "method_id": "M1",
+      "method_name": "从重复争吵中识别需求与责任问题",
+      "method_type": "沟通修复",
+      "applicable_scene": "适用于“恋爱中的冲突与沟通”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+      "suggested_actions": [
+        "把争执改写为可观察的问题、各自需求和具体请求",
+        "约定谁在何时完成什么，并在约定周期后复盘",
+        "同居冲突严重时先建立临时空间和沟通时段"
+      ],
+      "input_signals": [
+        "avoidant_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "恋爱中的冲突与沟通"
+    },
+    {
+      "file": "BV1po6DBmELg.json",
+      "bv": "BV1po6DBmELg",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "controlling_cue",
+        "rejection_cue",
+        "avoidant_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "线上认识或初步接触",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1PSmNB3EfN.json",
+      "bv": "BV1PSmNB3EfN",
+      "method_id": "M1",
+      "method_name": "把背叛事实与关系去留分开处理",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“出轨与背叛”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。",
+      "suggested_actions": [
+        "核对事实并保护健康、财务和居住安全",
+        "明确继续关系所需的责任、透明度和停止第三方关系等条件",
+        "若否认事实、倒打一耙或重复违约，制定退出计划"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "出轨与背叛"
+    },
+    {
+      "file": "BV1qb17BxEQZ.json",
+      "bv": "BV1qb17BxEQZ",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "单方付出 / 朋友区 / 备胎式关系",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1QQdFYYEr7.json",
+      "bv": "BV1QQdFYYEr7",
+      "method_id": "M1",
+      "method_name": "把背叛事实与关系去留分开处理",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“出轨与背叛”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。",
+      "suggested_actions": [
+        "核对事实并保护健康、财务和居住安全",
+        "明确继续关系所需的责任、透明度和停止第三方关系等条件",
+        "若否认事实、倒打一耙或重复违约，制定退出计划"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "出轨与背叛"
+    },
+    {
+      "file": "BV1qQiBBZEfm.json",
+      "bv": "BV1qQiBBZEfm",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1QSXcBpEVW.json",
+      "bv": "BV1QSXcBpEVW",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1qyFjz4EjL.json",
+      "bv": "BV1qyFjz4EjL",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "mixed_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1rGPbzrE73.json",
+      "bv": "BV1rGPbzrE73",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "healthy_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1RTqKBaEte.json",
+      "bv": "BV1RTqKBaEte",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1s6DJBsE7w.json",
+      "bv": "BV1s6DJBsE7w",
+      "method_id": "M1",
+      "method_name": "先建立可持续生活再进入关系",
+      "method_type": "心态建设",
+      "applicable_scene": "适用于“自我成长与恋爱心态”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+      "suggested_actions": [
+        "保留稳定的学习、工作、运动和朋友联系",
+        "把约会视为双向了解而非自我价值考试",
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣"
+      ],
+      "input_signals": [
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "自我成长与恋爱心态"
+    },
+    {
+      "file": "BV1SDkvBWEfS.json",
+      "bv": "BV1SDkvBWEfS",
+      "method_id": "M1",
+      "method_name": "从重复争吵中识别需求与责任问题",
+      "method_type": "沟通修复",
+      "applicable_scene": "适用于“恋爱中的冲突与沟通”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+      "suggested_actions": [
+        "把争执改写为可观察的问题、各自需求和具体请求",
+        "约定谁在何时完成什么，并在约定周期后复盘",
+        "同居冲突严重时先建立临时空间和沟通时段"
+      ],
+      "input_signals": [
+        "controlling_cue",
+        "rejection_cue",
+        "avoidant_cue",
+        "mixed_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "恋爱中的冲突与沟通"
+    },
+    {
+      "file": "BV1SfBcBLEHs.json",
+      "bv": "BV1SfBcBLEHs",
+      "method_id": "M1",
+      "method_name": "以低压力邀约逐级推进关系",
+      "method_type": "关系推进",
+      "applicable_scene": "适用于“如何推进关系 / 表白时机”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "异地或聚少离多",
+      "case_type": "如何推进关系 / 表白时机"
+    },
+    {
+      "file": "BV1SKdzYqEAa.json",
+      "bv": "BV1SKdzYqEAa",
+      "method_id": "M1",
+      "method_name": "用行为可改变性评估是否止损",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“分手与止损”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。",
+      "suggested_actions": [
+        "列出导致分手的具体问题和已尝试方案",
+        "设置短期、可验证的改变条件",
+        "无法改变或边界持续被破坏时停止拉扯并处理居住、财务和联系安排"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "分手与止损"
+    },
+    {
+      "file": "BV1T1XtYhEP3.json",
+      "bv": "BV1T1XtYhEP3",
+      "method_id": "M1",
+      "method_name": "把明确拒绝转化为停止追求的决策点",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“被拒绝后如何自处”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "被拒绝后如何自处"
+    },
+    {
+      "file": "BV1tymNByEun.json",
+      "bv": "BV1tymNByEun",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "controlling_cue",
+        "rejection_cue",
+        "avoidant_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1UKmrBjE3a.json",
+      "bv": "BV1UKmrBjE3a",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1UuyVBfE3Y.json",
+      "bv": "BV1UuyVBfE3Y",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1Uz1iBhEak.json",
+      "bv": "BV1Uz1iBhEak",
+      "method_id": "M1",
+      "method_name": "把背叛事实与关系去留分开处理",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“出轨与背叛”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。",
+      "suggested_actions": [
+        "核对事实并保护健康、财务和居住安全",
+        "明确继续关系所需的责任、透明度和停止第三方关系等条件",
+        "若否认事实、倒打一耙或重复违约，制定退出计划"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "长期关系 / 婚恋选择",
+      "case_type": "出轨与背叛"
+    },
+    {
+      "file": "BV1VXi3BVEg9.json",
+      "bv": "BV1VXi3BVEg9",
+      "method_id": "M1",
+      "method_name": "用行为可改变性评估是否止损",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“分手与止损”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。",
+      "suggested_actions": [
+        "列出导致分手的具体问题和已尝试方案",
+        "设置短期、可验证的改变条件",
+        "无法改变或边界持续被破坏时停止拉扯并处理居住、财务和联系安排"
+      ],
+      "input_signals": [
+        "controlling_cue",
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "分手与止损"
+    },
+    {
+      "file": "BV1X1kvBoE2W.json",
+      "bv": "BV1X1kvBoE2W",
+      "method_id": "M1",
+      "method_name": "用关系对话替代长期猜测",
+      "method_type": "关系定位",
+      "applicable_scene": "适用于“暧昧不清 / 关系定位不明”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "avoidant_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "异地或聚少离多",
+      "case_type": "暧昧不清 / 关系定位不明"
+    },
+    {
+      "file": "BV1X3mBBLE2B.json",
+      "bv": "BV1X3mBBLE2B",
+      "method_id": "M1",
+      "method_name": "用行为可改变性评估是否止损",
+      "method_type": "止损决策",
+      "applicable_scene": "适用于“分手与止损”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "caution",
+      "inference": "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。",
+      "suggested_actions": [
+        "列出导致分手的具体问题和已尝试方案",
+        "设置短期、可验证的改变条件",
+        "无法改变或边界持续被破坏时停止拉扯并处理居住、财务和联系安排"
+      ],
+      "input_signals": [
+        "boundary_violation",
+        "rejection_cue",
+        "mixed_cue",
+        "interest_cue"
+      ],
+      "relationship_stage": "分手后 / 断联",
+      "case_type": "分手与止损"
+    },
+    {
+      "file": "BV1Y4yNBLET7.json",
+      "bv": "BV1Y4yNBLET7",
+      "method_id": "M1",
+      "method_name": "用持续互惠而非单一热情信号判断兴趣",
+      "method_type": "兴趣识别",
+      "applicable_scene": "适用于“如何判断对方是否喜欢我”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "提出一次具体、低压力、可拒绝的见面邀请",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止"
+      ],
+      "input_signals": [
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "如何判断对方是否喜欢我"
+    },
+    {
+      "file": "BV1YAizBnEPh.json",
+      "bv": "BV1YAizBnEPh",
+      "method_id": "M1",
+      "method_name": "以同意、尊重和可退出性检查关系边界",
+      "method_type": "边界设立",
+      "applicable_scene": "适用于“边界问题 / 控制与消耗”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "danger",
+      "inference": "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "暧昧或关系确认阶段",
+      "case_type": "边界问题 / 控制与消耗"
+    },
+    {
+      "file": "BV1YaXtYgEDV.json",
+      "bv": "BV1YaXtYgEDV",
+      "method_id": "M1",
+      "method_name": "从重复争吵中识别需求与责任问题",
+      "method_type": "沟通修复",
+      "applicable_scene": "适用于“恋爱中的冲突与沟通”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+      "suggested_actions": [
+        "把争执改写为可观察的问题、各自需求和具体请求",
+        "约定谁在何时完成什么，并在约定周期后复盘",
+        "同居冲突严重时先建立临时空间和沟通时段"
+      ],
+      "input_signals": [
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "恋爱关系中",
+      "case_type": "恋爱中的冲突与沟通"
+    },
+    {
+      "file": "BV1yXicBYEAY.json",
+      "bv": "BV1yXicBYEAY",
+      "method_id": "M1",
+      "method_name": "以旧问题是否改变而非想念评估复合",
+      "method_type": "复合评估",
+      "applicable_scene": "适用于“复合评估”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "重新联系、怀念或邀约只代表情绪存在；只有导致分手的问题出现可验证改变，才有复合基础。",
+      "suggested_actions": [
+        "先用一次低压力见面了解近况，不预设复合",
+        "讨论当年分开的具体原因和各自变化",
+        "设定边界，慢速重建而非立即恢复情侣待遇"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "interest_cue",
+        "healthy_cue"
+      ],
+      "relationship_stage": "复合评估",
+      "case_type": "复合评估"
+    },
+    {
+      "file": "BV1z6kzB2EB5.json",
+      "bv": "BV1z6kzB2EB5",
+      "method_id": "M1",
+      "method_name": "以低压力邀约逐级推进关系",
+      "method_type": "关系推进",
+      "applicable_scene": "适用于“如何推进关系 / 表白时机”相关场景，且当事人能安全、自主地表达意愿和退出互动。",
+      "safety_level": "normal",
+      "inference": "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "input_signals": [
+        "rejection_cue",
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue"
+      ],
+      "relationship_stage": "追求、表白或单恋",
+      "case_type": "如何推进关系 / 表白时机"
+    }
+  ],
+  "invalid_files": [
+    "BV11V17BiEtu.json",
+    "BV12bwRebE1x.json",
+    "BV13xr7Y5E4x.json",
+    "BV14umrB5EYJ.json",
+    "BV1ejknBnEa9.json",
+    "BV1LhdfBaEiE.json",
+    "BV1mPxczfEVk.json",
+    "BV1NbCwBWEBy.json",
+    "BV1p5C2BrE5W.json",
+    "BV1yL17BNEhR.json",
+    "BV1zDmHByEut.json"
+  ]
+}

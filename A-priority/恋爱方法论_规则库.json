@@ -1,0 +1,724 @@
+{
+  "summary": {
+    "total_methods": 57,
+    "verified_rules": 9,
+    "candidate_rules": 1,
+    "case_heuristics": 1
+  },
+  "verified_rules": [
+    {
+      "rule_name": "以同意、尊重和可退出性检查关系边界",
+      "level": "验证规则",
+      "case_count": 13,
+      "cross_stage_count": 7,
+      "relationship_stages": [
+        "分手后 / 断联",
+        "暧昧或关系确认阶段",
+        "长期关系 / 婚恋选择",
+        "线上认识或初步接触",
+        "恋爱关系中",
+        "追求、表白或单恋",
+        "单方付出 / 朋友区 / 备胎式关系"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation",
+        "controlling_cue",
+        "avoidant_cue"
+      ],
+      "method_types": [
+        "边界设立"
+      ],
+      "safety_levels": [
+        "danger",
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+        "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。",
+        "纠缠、监视、羞辱、强迫、威胁或无视拒绝不是亲密程度高，而是边界和安全风险。"
+      ],
+      "suggested_actions": [
+        "清楚表达一次边界并保留记录",
+        "减少单独接触，告知可信任的现实联系人",
+        "若出现威胁、暴力或性强迫，优先离开现场并联系当地警方、医疗或专业支持"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV159BxBdEc8",
+          "stage": "分手后 / 断联",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV16p9fY6Epx",
+          "stage": "长期关系 / 婚恋选择",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1BjeUzvE4a",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1BqkvBPEwv",
+          "stage": "线上认识或初步接触",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1iDfwYXEuT",
+          "stage": "分手后 / 断联",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1J8TczTEB7",
+          "stage": "分手后 / 断联",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1MwiGBTEe7",
+          "stage": "恋爱关系中",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1MySJBZEjU",
+          "stage": "分手后 / 断联",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1n2mHB7EzQ",
+          "stage": "追求、表白或单恋",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1oAmBBDEaK",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1qb17BxEQZ",
+          "stage": "单方付出 / 朋友区 / 备胎式关系",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1UKmrBjE3a",
+          "stage": "分手后 / 断联",
+          "case_type": "边界问题 / 控制与消耗"
+        },
+        {
+          "bv": "BV1YAizBnEPh",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "边界问题 / 控制与消耗"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "先建立可持续生活再进入关系",
+      "level": "验证规则",
+      "case_count": 8,
+      "cross_stage_count": 3,
+      "relationship_stages": [
+        "追求、表白或单恋",
+        "线上认识或初步接触",
+        "恋爱关系中"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation",
+        "controlling_cue",
+        "avoidant_cue"
+      ],
+      "method_types": [
+        "心态建设"
+      ],
+      "safety_levels": [
+        "danger",
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+        "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。",
+        "想恋爱本身正常，但把自我价值完全绑定于是否被选择，会放大焦虑并降低边界判断。"
+      ],
+      "suggested_actions": [
+        "通过真实共同活动练习与异性相处，不以套路替代人格和兴趣",
+        "把约会视为双向了解而非自我价值考试",
+        "保留稳定的学习、工作、运动和朋友联系"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV19DCwBMEoA",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1anknBmE7v",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1BSiBBFE1U",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1g3PtzWEtJ",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1i1UyBgEjW",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1po6DBmELg",
+          "stage": "线上认识或初步接触",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1qyFjz4EjL",
+          "stage": "追求、表白或单恋",
+          "case_type": "自我成长与恋爱心态"
+        },
+        {
+          "bv": "BV1s6DJBsE7w",
+          "stage": "恋爱关系中",
+          "case_type": "自我成长与恋爱心态"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "用关系对话替代长期猜测",
+      "level": "验证规则",
+      "case_count": 7,
+      "cross_stage_count": 3,
+      "relationship_stages": [
+        "追求、表白或单恋",
+        "异地或聚少离多",
+        "暧昧或关系确认阶段"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation",
+        "controlling_cue",
+        "avoidant_cue"
+      ],
+      "method_types": [
+        "关系定位"
+      ],
+      "safety_levels": [
+        "danger",
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+        "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。",
+        "亲密称呼、频繁聊天或身体接触不自动等于排他关系；需要用双方是否愿意定义关系、承担责任和保持一致来判断。"
+      ],
+      "suggested_actions": [
+        "在平静时说明自己观察到的互动和真实期待",
+        "直接询问对方是否愿意进入排他关系及可接受边界",
+        "若长期拒绝定义却持续索取亲密与资源，降低投入并退出"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV14JXwYpEK1",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1BzqKB6EdF",
+          "stage": "追求、表白或单恋",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1qQiBBZEfm",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1QSXcBpEVW",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1RTqKBaEte",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1tymNByEun",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "暧昧不清 / 关系定位不明"
+        },
+        {
+          "bv": "BV1X1kvBoE2W",
+          "stage": "异地或聚少离多",
+          "case_type": "暧昧不清 / 关系定位不明"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "用持续互惠而非单一热情信号判断兴趣",
+      "level": "验证规则",
+      "case_count": 6,
+      "cross_stage_count": 3,
+      "relationship_stages": [
+        "追求、表白或单恋",
+        "线上认识或初步接触",
+        "暧昧或关系确认阶段"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation"
+      ],
+      "method_types": [
+        "兴趣识别"
+      ],
+      "safety_levels": [
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+        "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。",
+        "单次热聊、礼貌回应或共同兴趣只能算弱信号；只有主动发起、持续投入和愿意落实线下相处同时出现，才可提高对恋爱兴趣的判断置信度。"
+      ],
+      "suggested_actions": [
+        "记录一至两周内双方主动发起和落实邀约的情况",
+        "根据对方是否主动另约时间和持续投入决定继续、放缓或停止",
+        "提出一次具体、低压力、可拒绝的见面邀请"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV1aiSJBPEm3",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "如何判断对方是否喜欢我"
+        },
+        {
+          "bv": "BV1mFBwByEUJ",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "如何判断对方是否喜欢我"
+        },
+        {
+          "bv": "BV1P9SJBQEgg",
+          "stage": "线上认识或初步接触",
+          "case_type": "如何判断对方是否喜欢我"
+        },
+        {
+          "bv": "BV1rGPbzrE73",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "如何判断对方是否喜欢我"
+        },
+        {
+          "bv": "BV1UuyVBfE3Y",
+          "stage": "追求、表白或单恋",
+          "case_type": "如何判断对方是否喜欢我"
+        },
+        {
+          "bv": "BV1Y4yNBLET7",
+          "stage": "追求、表白或单恋",
+          "case_type": "如何判断对方是否喜欢我"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "把明确拒绝转化为停止追求的决策点",
+      "level": "验证规则",
+      "case_count": 5,
+      "cross_stage_count": 2,
+      "relationship_stages": [
+        "追求、表白或单恋",
+        "分手后 / 断联"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation",
+        "controlling_cue",
+        "avoidant_cue"
+      ],
+      "method_types": [
+        "止损决策"
+      ],
+      "safety_levels": [
+        "danger",
+        "caution"
+      ],
+      "inferences": [
+        "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+        "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。",
+        "明确拒绝、拉黑、躲避或要求停止联系，应视为边界而非继续证明诚意的挑战。"
+      ],
+      "suggested_actions": [
+        "停止私信、托人询问和线下堵人",
+        "把共同事务降到必要且礼貌的沟通",
+        "将注意力转回学业、工作、朋友和规律生活"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV11wEQzmEKJ",
+          "stage": "追求、表白或单恋",
+          "case_type": "被拒绝后如何自处"
+        },
+        {
+          "bv": "BV13qmNBJEWW",
+          "stage": "追求、表白或单恋",
+          "case_type": "被拒绝后如何自处"
+        },
+        {
+          "bv": "BV1c7U1BJEie",
+          "stage": "分手后 / 断联",
+          "case_type": "被拒绝后如何自处"
+        },
+        {
+          "bv": "BV1MwsSzaEL1",
+          "stage": "分手后 / 断联",
+          "case_type": "被拒绝后如何自处"
+        },
+        {
+          "bv": "BV1T1XtYhEP3",
+          "stage": "分手后 / 断联",
+          "case_type": "被拒绝后如何自处"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "以低压力邀约逐级推进关系",
+      "level": "验证规则",
+      "case_count": 5,
+      "cross_stage_count": 3,
+      "relationship_stages": [
+        "追求、表白或单恋",
+        "暧昧或关系确认阶段",
+        "异地或聚少离多"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation"
+      ],
+      "method_types": [
+        "关系推进"
+      ],
+      "safety_levels": [
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+        "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。",
+        "互动有互惠且能稳定落地时，可以小步推进；若主要靠单方输出或尚未建立基本了解，不宜用突然表白替代相处。"
+      ],
+      "suggested_actions": [
+        "先安排共同兴趣相关的一对一活动",
+        "在相处后具体表达欣赏与继续了解的意愿",
+        "给对方明确、无惩罚的拒绝空间"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV1DNyVBaEte",
+          "stage": "异地或聚少离多",
+          "case_type": "如何推进关系 / 表白时机"
+        },
+        {
+          "bv": "BV1m3yVBtEC4",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "如何推进关系 / 表白时机"
+        },
+        {
+          "bv": "BV1MAB4BSE2q",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "如何推进关系 / 表白时机"
+        },
+        {
+          "bv": "BV1SfBcBLEHs",
+          "stage": "异地或聚少离多",
+          "case_type": "如何推进关系 / 表白时机"
+        },
+        {
+          "bv": "BV1z6kzB2EB5",
+          "stage": "追求、表白或单恋",
+          "case_type": "如何推进关系 / 表白时机"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "从重复争吵中识别需求与责任问题",
+      "level": "验证规则",
+      "case_count": 4,
+      "cross_stage_count": 1,
+      "relationship_stages": [
+        "恋爱关系中"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "controlling_cue",
+        "avoidant_cue"
+      ],
+      "method_types": [
+        "沟通修复"
+      ],
+      "safety_levels": [
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+        "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。",
+        "同一问题反复争吵且没有行为调整，说明问题不只在表达方式，也可能涉及生活责任和兼容性。"
+      ],
+      "suggested_actions": [
+        "同居冲突严重时先建立临时空间和沟通时段",
+        "约定谁在何时完成什么，并在约定周期后复盘",
+        "把争执改写为可观察的问题、各自需求和具体请求"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV16qUyB1E11",
+          "stage": "恋爱关系中",
+          "case_type": "恋爱中的冲突与沟通"
+        },
+        {
+          "bv": "BV1pgBoB4Esm",
+          "stage": "恋爱关系中",
+          "case_type": "恋爱中的冲突与沟通"
+        },
+        {
+          "bv": "BV1SDkvBWEfS",
+          "stage": "恋爱关系中",
+          "case_type": "恋爱中的冲突与沟通"
+        },
+        {
+          "bv": "BV1YaXtYgEDV",
+          "stage": "恋爱关系中",
+          "case_type": "恋爱中的冲突与沟通"
+        }
+      ],
+      "generality": "特定场景"
+    },
+    {
+      "rule_name": "把背叛事实与关系去留分开处理",
+      "level": "验证规则",
+      "case_count": 3,
+      "cross_stage_count": 3,
+      "relationship_stages": [
+        "长期关系 / 婚恋选择",
+        "分手后 / 断联",
+        "恋爱关系中"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation"
+      ],
+      "method_types": [
+        "止损决策"
+      ],
+      "safety_levels": [
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。",
+        "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。",
+        "先确认可核实的违约行为和双方约定，再判断信任是否有现实修复条件；不能只靠承诺或沉没成本继续。"
+      ],
+      "suggested_actions": [
+        "核对事实并保护健康、财务和居住安全",
+        "若否认事实、倒打一耙或重复违约，制定退出计划",
+        "明确继续关系所需的责任、透明度和停止第三方关系等条件"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV1PSmNB3EfN",
+          "stage": "分手后 / 断联",
+          "case_type": "出轨与背叛"
+        },
+        {
+          "bv": "BV1QQdFYYEr7",
+          "stage": "恋爱关系中",
+          "case_type": "出轨与背叛"
+        },
+        {
+          "bv": "BV1Uz1iBhEak",
+          "stage": "长期关系 / 婚恋选择",
+          "case_type": "出轨与背叛"
+        }
+      ],
+      "generality": "较强可迁移"
+    },
+    {
+      "rule_name": "用行为可改变性评估是否止损",
+      "level": "验证规则",
+      "case_count": 3,
+      "cross_stage_count": 1,
+      "relationship_stages": [
+        "分手后 / 断联"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "healthy_cue",
+        "sunk_cost_cue",
+        "mixed_cue",
+        "rejection_cue",
+        "boundary_violation",
+        "controlling_cue"
+      ],
+      "method_types": [
+        "止损决策"
+      ],
+      "safety_levels": [
+        "normal",
+        "caution"
+      ],
+      "inferences": [
+        "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。",
+        "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。",
+        "舍不得只能说明存在情感，不说明核心冲突可解决；应看问题是否被承认、是否有具体改变以及关系是否安全。"
+      ],
+      "suggested_actions": [
+        "设置短期、可验证的改变条件",
+        "无法改变或边界持续被破坏时停止拉扯并处理居住、财务和联系安排",
+        "列出导致分手的具体问题和已尝试方案"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV1SKdzYqEAa",
+          "stage": "分手后 / 断联",
+          "case_type": "分手与止损"
+        },
+        {
+          "bv": "BV1VXi3BVEg9",
+          "stage": "分手后 / 断联",
+          "case_type": "分手与止损"
+        },
+        {
+          "bv": "BV1X3mBBLE2B",
+          "stage": "分手后 / 断联",
+          "case_type": "分手与止损"
+        }
+      ],
+      "generality": "特定场景"
+    }
+  ],
+  "candidate_rules": [
+    {
+      "rule_name": "将情绪托付从单一对象分散到现实支持系统",
+      "level": "候选规则",
+      "case_count": 2,
+      "cross_stage_count": 2,
+      "relationship_stages": [
+        "单方付出 / 朋友区 / 备胎式关系",
+        "暧昧或关系确认阶段"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "rejection_cue",
+        "mixed_cue",
+        "boundary_violation"
+      ],
+      "method_types": [
+        "自我状态调整"
+      ],
+      "safety_levels": [
+        "danger",
+        "caution"
+      ],
+      "inferences": [
+        "当恋爱被当成填补空虚、维持生存感或唯一情绪出口时，关系需求可能超过任何伴侣能稳定承受的范围。",
+        "当恋爱被当成填补空虚、维持生存感或唯一情绪出口时，关系需求可能超过任何伴侣能稳定承受的范围。"
+      ],
+      "suggested_actions": [
+        "减少用高频确认、占有或牺牲换安全感",
+        "在情绪稳定后再评估是否真正欣赏具体的人",
+        "把情绪支持分散到可信朋友、家人、规律作息和专业支持"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV112ieYKEYM",
+          "stage": "单方付出 / 朋友区 / 备胎式关系",
+          "case_type": "安全感 / 患得患失 / 托付心态"
+        },
+        {
+          "bv": "BV1aJknBEEzo",
+          "stage": "暧昧或关系确认阶段",
+          "case_type": "安全感 / 患得患失 / 托付心态"
+        }
+      ],
+      "generality": "较强可迁移"
+    }
+  ],
+  "case_heuristics": [
+    {
+      "rule_name": "以旧问题是否改变而非想念评估复合",
+      "level": "案例启发式",
+      "case_count": 1,
+      "cross_stage_count": 1,
+      "relationship_stages": [
+        "复合评估"
+      ],
+      "signal_categories": [
+        "interest_cue",
+        "rejection_cue",
+        "healthy_cue"
+      ],
+      "method_types": [
+        "复合评估"
+      ],
+      "safety_levels": [
+        "normal"
+      ],
+      "inferences": [
+        "重新联系、怀念或邀约只代表情绪存在；只有导致分手的问题出现可验证改变，才有复合基础。"
+      ],
+      "suggested_actions": [
+        "讨论当年分开的具体原因和各自变化",
+        "设定边界，慢速重建而非立即恢复情侣待遇",
+        "先用一次低压力见面了解近况，不预设复合"
+      ],
+      "source_cases": [
+        {
+          "bv": "BV1yXicBYEAY",
+          "stage": "复合评估",
+          "case_type": "复合评估"
+        }
+      ],
+      "generality": "特定场景"
+    }
+  ]
+}
