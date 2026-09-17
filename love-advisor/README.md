@@ -16,23 +16,14 @@
 
 ## ⚡ 快速使用（一键启动）
 
-下载 [GitHub Release](https://github.com/yjh2222332024/lianai/releases) 中的 `love-advisor-*.tgz` 文件。电脑需要先安装 [Node.js (>=22.19.0)](https://nodejs.org)。
+Windows 用户下载 [GitHub Release](https://github.com/yjh2222332024/lianai/releases) 中的 `Love-Advisor-*-windows-portable.zip`，**完整解压**后双击 **`启动恋爱军师.bat`** 即可。便携包内置运行时和依赖，不需要另装 Node.js 或 npm，也不需要首次联网安装；浏览器会自动打开 `http://127.0.0.1:3111`。
 
-在下载目录打开终端（PowerShell / CMD / Terminal），执行：
+其他系统或希望通过终端启动的用户，可下载 Release 中的 `love-advisor-*.tgz` 并执行：
 
 ```bash
 npm install -g ./love-advisor-0.1.0.tgz
 love-advisor
 ```
-
-Windows 也可以把下载文件直接拖入终端，以自动填入文件路径。例如：
-
-```powershell
-npm install -g "C:\\Users\\你的用户名\\Downloads\\love-advisor-0.1.0.tgz"
-love-advisor
-```
-
-更新版本时，重新下载最新的 `.tgz` 文件，再运行同一条 `npm install -g` 命令即可。
 
 启动后会自动打开默认浏览器访问 `http://127.0.0.1:3111`。
 
