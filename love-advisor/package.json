@@ -7,7 +7,7 @@
     "node": ">=22.19.0"
   },
   "bin": {
-    "love-advisor": "./bin/cli.js"
+    "love-advisor": "bin/cli.js"
   },
   "files": [
     "bin",
