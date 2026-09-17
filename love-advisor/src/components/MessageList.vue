@@ -174,7 +174,7 @@ watch(
   <!-- 首页态：Hero + 卡片 -->
   <div v-if="!messages.length" class="home-block" :class="{ 'is-split': isSplit }">
     <div class="hero-tagline">✦ THE INTIMATE SALON · 私密智囊沙龙 ✦</div>
-    <div class="hero-logo"><img :src="logo" alt="恋爱顾问" /></div>
+    <div class="hero-logo"><img :src="logo" alt="心迹" /></div>
     <h1>{{ isSplit ? '向军师提问' : homeTitle }}</h1>
     <p class="subtitle">{{ isSplit ? '在左侧点击或框选聊天记录，直接获得深度剖析与回复策略。' : '把事情告诉我，为你拆解对话潜台词、情绪起伏与下一步对策。' }}</p>
 
@@ -207,7 +207,7 @@ watch(
         class="msg animate-bubble-in"
         :class="m.role === 'user' ? 'user' : 'assistant'"
       >
-        <img v-if="m.role !== 'user'" :src="logo" alt="恋爱顾问" class="msg-avatar" />
+        <img v-if="m.role !== 'user'" :src="logo" alt="心迹" class="msg-avatar" />
         <div v-else class="msg-avatar me">我</div>
         <div class="msg-body">
           <!-- 思考过程（可折叠胶囊容器） -->

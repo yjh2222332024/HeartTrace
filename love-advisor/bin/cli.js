@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// ── 恋爱军师 CLI 一键启动入口（支持 npx love-advisor）──────
+// ── 心迹 CLI 一键启动入口（兼容 love-advisor 命令）──────────
 import { startServer } from '../server/index.js'
 import { exec } from 'node:child_process'
 import fs from 'node:fs'
@@ -13,7 +13,8 @@ const args = process.argv.slice(2)
 
 if (args.includes('-h') || args.includes('--help')) {
   console.log(`
-  🌸 恋爱军师 Love Advisor v${pkg.version}
+  🌸 心迹 HeartTrace v${pkg.version}
+  关系理解与对话训练工作台
 
   用法:
     npx love-advisor [选项]
@@ -78,8 +79,8 @@ async function main() {
     console.log(`
   ┌────────────────────────────────────────────────────┐
   │                                                    │
-  │   🌸 恋爱军师 (Love Advisor) v${pkg.version.padEnd(6)}             │
-  │   本地私密 AI 军师已就绪                           │
+  │   🌸 心迹 (HeartTrace) v${pkg.version.padEnd(6)}                   │
+  │   关系理解与对话训练工作台已就绪                    │
   │                                                    │
   │   ➜ 本地访问:  \x1b[36m${url}\x1b[0m               │
   │   ➜ 按 Ctrl+C 即可停止服务                         │

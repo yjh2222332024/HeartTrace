@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="./love-advisor/src/assets/logo.png" alt="Love Advisor" width="96" />
+  <img src="./love-advisor/src/assets/logo.png" alt="HeartTrace" width="96" />
 </p>
 
-<h1 align="center">🌸 Love Advisor · 恋爱军师</h1>
+<h1 align="center">🌸 心迹 · HeartTrace</h1>
 
 <p align="center">
   <strong>把聊天记录变成证据，把下一句话先练一遍。</strong>
 </p>
 
 <p align="center">
-  一个本地优先的 AI 恋爱决策工作台：分析真实聊天记录、模拟关键对话场景，<br />
+  一个本地优先的关系理解与对话训练工作台：分析真实聊天记录、模拟关键对话场景，<br />
   再让熟悉你们关系上下文的个性化军师，帮你看清局势并决定下一步怎么做。
 </p>
 
@@ -23,13 +23,13 @@
 
 ---
 
-## 为什么做 Love Advisor？
+## 为什么做心迹？
 
 感情里最难的，往往是建议离你的真实情况太远。
 
 一句“她是不是不喜欢我了？”背后，真正有用的信息可能藏在几个月的聊天节奏里：谁更常主动、回复速度有没有变化、最近在聊什么、哪些话题总是被避开、关系里有哪些还没解决的事。
 
-**Love Advisor 不只回答你这一句话。**
+**心迹不只回答你这一句话。**
 
 它试着把一段关系变成一个可以持续理解、持续训练、持续复盘的工作区：
 
@@ -46,7 +46,7 @@ flowchart LR
 ```
 
 <p align="center">
-  <img src="./docs/images/love-advisor-dual-pane.png" alt="Love Advisor 双栏对照：聊天证据与军师咨询" width="100%" />
+  <img src="./docs/images/love-advisor-dual-pane.png" alt="心迹双栏对照：聊天证据与军师咨询" width="100%" />
 </p>
 
 <p align="center"><sub>双栏对照：左侧核对原始聊天，右侧直接向军师提问。截图使用完全虚构的演示数据。</sub></p>
@@ -57,7 +57,7 @@ flowchart LR
 
 ### 💬 1. 聊天记录分析：先看事实，再谈感觉
 
-把真实 QQ 私聊导入后，Love Advisor 会把聊天记录变成可以浏览、搜索、统计和引用的关系证据。
+把真实 QQ 私聊导入后，心迹会把聊天记录变成可以浏览、搜索、统计和引用的关系证据。
 
 你可以看到：
 
@@ -73,7 +73,7 @@ flowchart LR
 > 尽量让每条建议都回到真实发生过的对话里，用聊天证据支撑判断。
 
 <p align="center">
-  <img src="./docs/images/love-advisor-insights.png" alt="Love Advisor 数据洞察" width="100%" />
+  <img src="./docs/images/love-advisor-insights.png" alt="心迹数据洞察" width="100%" />
 </p>
 
 <p align="center"><sub>沟通洞察：消息趋势、回复时延、活跃时段与双方投入。截图使用完全虚构的演示数据。</sub></p>
@@ -89,7 +89,7 @@ flowchart LR
 
 很多建议看起来都对，真正到了聊天框里却完全说不出口。
 
-Love Advisor 内置了一个**由真实关系档案驱动的模拟训练场**。系统会根据当前工作区里的关系信息生成角色与场景，尽量还原“这个人可能会怎么聊”。
+心迹内置了一个**由真实关系档案驱动的模拟训练场**。系统会根据当前工作区里的关系信息生成角色与场景，尽量还原“这个人可能会怎么聊”。
 
 模拟会参考：
 
@@ -127,7 +127,7 @@ Love Advisor 内置了一个**由真实关系档案驱动的模拟训练场**。
 
 #### 还可以拥有不同的“军师”
 
-Love Advisor 的军师支持自由组合与扩展，不受单一 Prompt 限制。你可以：
+心迹的军师支持自由组合与扩展，不受单一 Prompt 限制。你可以：
 
 - 使用并修改默认情感军师的系统提示词；
 - 导入符合规范的 `.zip` 军师包；
@@ -153,7 +153,7 @@ Love Advisor 的军师支持自由组合与扩展，不受单一 Prompt 限制�
 
 ## 🔒 本地优先与隐私
 
-聊天记录属于高度私密数据，所以 Love Advisor 默认采用**本地优先**的设计：
+聊天记录属于高度私密数据，所以心迹默认采用**本地优先**的设计：
 
 - 聊天记录解析、工作区数据和持久化内容保存在本机。
 - QQ 聊天导入通过本机 QCE / ChatLab 流程完成。
@@ -167,7 +167,7 @@ Love Advisor 的军师支持自由组合与扩展，不受单一 Prompt 限制�
 
 ## 🛡️ 边界与安全
 
-Love Advisor 的目标是帮助你理解关系、改善沟通，并把尊重边界放在关系推进之前。
+心迹的目标是帮助你理解关系、改善沟通，并把尊重边界放在关系推进之前。
 
 项目内置安全规则，明确反对：
 
@@ -284,7 +284,7 @@ npm start
 
 ## 🌱 项目定位
 
-Love Advisor 定位为一个 **Relationship Decision Workspace**：把聊天证据、关系档案、军师分析和场景训练放进同一个持续演进的工作区。
+心迹（HeartTrace）定位为一个 **关系理解与对话训练工作台**：把聊天证据、关系档案、军师分析和场景训练放进同一个持续演进的工作区。
 
 它想做的是三个连续动作：
 
@@ -296,4 +296,4 @@ Love Advisor 定位为一个 **Relationship Decision Workspace**：把聊天证�
 
 ## 📄 License
 
-Love Advisor 代码以 [MIT License](./love-advisor/LICENSE) 开源。项目依赖 `chatlab-cli`，其自身采用 AGPL-3.0；发布、分发或二次开发前请自行确认适用的许可证义务。
+心迹（HeartTrace）代码以 [MIT License](./love-advisor/LICENSE) 开源。项目依赖 `chatlab-cli`，其自身采用 AGPL-3.0；发布、分发或二次开发前请自行确认适用的许可证义务。

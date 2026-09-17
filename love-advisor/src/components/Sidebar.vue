@@ -133,8 +133,8 @@ async function save() {
 <template>
   <aside class="sidebar tree-sidebar">
     <div class="brand-row">
-      <div class="brand-mark"><img :src="logo" alt="恋爱顾问" /></div>
-      <div class="brand-copy"><strong>恋爱顾问</strong></div>
+      <div class="brand-mark"><img :src="logo" alt="心迹" /></div>
+      <div class="brand-copy"><strong>心迹</strong><small>HeartTrace</small></div>
       <button class="collapse" aria-label="收起侧栏" title="收起侧栏" @click="emit('toggle-collapse')">
         <ChevronsLeft :size="20" />
       </button>
@@ -323,7 +323,7 @@ async function save() {
     <ConfirmDialog
       :open="!!deleteTarget"
       title="删除会话？"
-      :message="deleteTarget ? `会话「${deleteTarget.title}」及其中的顾问对话将被永久删除，此操作无法撤销。` : ''"
+      :message="deleteTarget ? `会话「${deleteTarget.title}」及其中的 AI 对话将被永久删除，此操作无法撤销。` : ''"
       confirm-text="删除会话"
       @cancel="deleteTarget = null"
       @confirm="confirmDelete"

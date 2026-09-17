@@ -1,7 +1,7 @@
 {
   "name": "love-advisor",
   "version": "0.1.0",
-  "description": "基于私密聊天记录客观取证与方法论沉淀的长程情感军师 Agent",
+  "description": "HeartTrace（心迹）：本地优先的关系理解与对话训练工作台",
   "type": "module",
   "engines": {
     "node": ">=22.19.0"
@@ -32,6 +32,8 @@
   "keywords": [
     "ai",
     "agent",
+    "hearttrace",
+    "心迹",
     "love-advisor",
     "chatlab",
     "relationship",

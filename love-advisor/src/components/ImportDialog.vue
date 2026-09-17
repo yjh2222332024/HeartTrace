@@ -234,7 +234,7 @@ async function dryRun() {
     const j = await res.json()
     if (!j.ok) throw new Error(j.error || '预览失败')
     if (j.data.type && j.data.type !== 'private') {
-      throw new Error(`「${j.data.name || file.value.name}」是群聊。恋爱军师只分析一对一私聊。`)
+      throw new Error(`「${j.data.name || file.value.name}」是群聊。心迹只分析一对一私聊。`)
     }
     preview.value = j.data
   } catch (e) {
