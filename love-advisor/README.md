@@ -16,18 +16,23 @@
 
 ## ⚡ 快速使用（一键启动）
 
-无需下载源码，只要电脑安装了 [Node.js (>=22.19.0)](https://nodejs.org)，在任意终端（PowerShell / CMD / Terminal）输入：
+下载 [GitHub Release](https://github.com/yjh2222332024/lianai/releases) 中的 `love-advisor-*.tgz` 文件。电脑需要先安装 [Node.js (>=22.19.0)](https://nodejs.org)。
+
+在下载目录打开终端（PowerShell / CMD / Terminal），执行：
 
 ```bash
-npx love-advisor
-```
-
-或者全局安装后直接启动：
-
-```bash
-npm install -g love-advisor
+npm install -g ./love-advisor-0.1.0.tgz
 love-advisor
 ```
+
+Windows 也可以把下载文件直接拖入终端，以自动填入文件路径。例如：
+
+```powershell
+npm install -g "C:\\Users\\你的用户名\\Downloads\\love-advisor-0.1.0.tgz"
+love-advisor
+```
+
+更新版本时，重新下载最新的 `.tgz` 文件，再运行同一条 `npm install -g` 命令即可。
 
 启动后会自动打开默认浏览器访问 `http://127.0.0.1:3111`。
 
