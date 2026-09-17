@@ -42,6 +42,10 @@
     "type": "git",
     "url": "git+https://github.com/yjh2222332024/lianai.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "dependencies": {
     "chatlab-cli": "^0.37.1",
     "dompurify": "^3.4.14",
