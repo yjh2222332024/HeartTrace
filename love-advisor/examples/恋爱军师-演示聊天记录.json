@@ -1,0 +1,59 @@
+{
+  "chatlab": {
+    "version": "0.0.2",
+    "exportedAt": 1789566000,
+    "generator": "Love Advisor demo data",
+    "description": "完全虚构的产品演示私聊。人物、事件和内容均不对应真实个人。"
+  },
+  "meta": {
+    "name": "林小雨",
+    "platform": "demo",
+    "type": "private",
+    "ownerId": "demo-zhou"
+  },
+  "members": [
+    { "platformId": "demo-zhou", "accountName": "周予安" },
+    { "platformId": "demo-lin", "accountName": "林小雨" }
+  ],
+  "messages": [
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1786334400, "type": 0, "content": "今天的分享会结束啦，你上次推荐的那家咖啡店就在附近，我去试了。", "platformMessageId": "demo-001" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1786334580, "type": 0, "content": "真的？我最喜欢他们家的燕麦拿铁。你觉得怎么样？", "platformMessageId": "demo-002" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1786334760, "type": 0, "content": "比我预期好，店里那张靠窗的桌子很适合发呆。", "platformMessageId": "demo-003" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1786335120, "type": 0, "content": "那下次可以一起去，我周末一般会在那边看书。", "platformMessageId": "demo-004" },
+
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1786705800, "type": 0, "content": "你那天说的播客是哪一期？我通勤时想听。", "platformMessageId": "demo-005" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1786705980, "type": 0, "content": "我发你，先从这一期开始，讲的是怎么把焦虑拆小。", "platformMessageId": "demo-006" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1786706280, "type": 0, "content": "好呀。最近项目有点赶，正好需要这个。", "platformMessageId": "demo-007" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1786706520, "type": 0, "content": "辛苦了，不急着回。等你忙完再聊听后感。", "platformMessageId": "demo-008" },
+
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1787401800, "type": 0, "content": "这周六下午你有空吗？想请你喝上次那家咖啡。", "platformMessageId": "demo-009" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1787402160, "type": 0, "content": "周六白天要陪家人看医生，晚上可能可以。", "platformMessageId": "demo-010" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1787402580, "type": 0, "content": "那先照顾家里，晚上如果累就改天，不用为了约会赶时间。", "platformMessageId": "demo-011" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1787403000, "type": 0, "content": "谢谢你理解。下周三我应该能早点下班，到时我来约你。", "platformMessageId": "demo-012" },
+
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1787667300, "type": 0, "content": "这两天我可能回复慢一点，项目临近上线，脑子有点乱。", "platformMessageId": "demo-013" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1787667720, "type": 0, "content": "收到。你专心处理，我不连环问进度。", "platformMessageId": "demo-014" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1787668500, "type": 0, "content": "等上线以后想吃点好的，告诉我一声。", "platformMessageId": "demo-015" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1787669400, "type": 0, "content": "好，先记着。你这样说我会轻松很多。", "platformMessageId": "demo-016" },
+
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1788259200, "type": 0, "content": "上线顺利吗？不方便聊工作也没关系，我只是来报个到。", "platformMessageId": "demo-017" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1788259500, "type": 0, "content": "今天终于过了第一轮，刚下班。谢谢你没有一直追着问。", "platformMessageId": "demo-018" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1788259800, "type": 0, "content": "下周三还算数吗？我想兑现那杯咖啡。", "platformMessageId": "demo-019" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1788260700, "type": 0, "content": "当然算数。你定时间和附近地点，我来配合。", "platformMessageId": "demo-020" },
+
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1788872400, "type": 0, "content": "昨天见面很开心。回家路上还好吗？", "platformMessageId": "demo-021" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1788872640, "type": 0, "content": "到了。谢谢你听我吐槽，没有急着给建议。", "platformMessageId": "demo-022" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1788872820, "type": 0, "content": "我记得你说想自己先理一理。需要建议时再叫我。", "platformMessageId": "demo-023" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1788873180, "type": 0, "content": "嗯，这样刚好。还有一件事：我忙的时候不太看手机，不是故意冷落谁。", "platformMessageId": "demo-024" },
+
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1789183800, "type": 0, "content": "我明白。以后看到你慢回，我会先按你在忙来理解，不让你额外解释。", "platformMessageId": "demo-025" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1789184400, "type": 0, "content": "谢谢。也不用每次都小心翼翼，正常做你自己就好。", "platformMessageId": "demo-026" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1789185300, "type": 0, "content": "好。我对你有好感，但不想把这个变成你的压力，所以会慢一点。", "platformMessageId": "demo-027" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1789185720, "type": 0, "content": "我知道，也谢谢你说得直接。我们先多了解一点，好吗？", "platformMessageId": "demo-028" },
+
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1789560600, "type": 0, "content": "周末有个小型摄影展，我想去看看。你对这种展有兴趣吗？", "platformMessageId": "demo-029" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1789561020, "type": 0, "content": "有兴趣。你想安静看展，还是看完找地方聊聊？", "platformMessageId": "demo-030" },
+    { "sender": "demo-lin", "accountName": "林小雨", "timestamp": 1789561500, "type": 0, "content": "先看展吧，状态好再去吃点东西。我明天确认时间。", "platformMessageId": "demo-031" },
+    { "sender": "demo-zhou", "accountName": "周予安", "timestamp": 1789562040, "type": 0, "content": "好，等你确认。祝你今晚早点收工。", "platformMessageId": "demo-032" }
+  ]
+}
