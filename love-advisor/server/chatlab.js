@@ -1,4 +1,5 @@
-﻿import { clb, extractJson } from './qce.js'
+import { clb, extractJson } from './qce.js'
+import { assertPrivateChat } from './chatgate.js'
 
 // ── ChatLab 多维度分析：三层证据包采集器 ───────────────
 // L0 统计底盘（stats + 恋爱特化 SQL） → 定位异常窗口
@@ -6,7 +7,7 @@
 // L2 关键词命中兜底（道歉/告白/推脱等高信号短语）
 // 全程不读 message.content 原始列（sql 层自动脱敏，原文走官方清洗命令）
 
-async function clbJson(args) {
+export async function clbJson(args) {
   const j = extractJson(await clb(args))
   if (!j.ok) throw new Error(j.error?.message || `clb ${args[0]} 失败`)
   return j.data
@@ -18,10 +19,18 @@ async function safe(fn, warning) {
 
 const isWarn = x => x && x.__warning
 
+export function validateSessionId(sessionId) {
+  const value = String(sessionId || '')
+  if (!/^[A-Za-z0-9._:-]{1,200}$/.test(value)) {
+    throw new Error('会话 ID 格式无效')
+  }
+  return value
+}
+
 // 说明：clb() 已在 qce.js 内全局串行化（防 meta 竞争），此处无需再排队
 
 // ── 恋爱特化 SQL（不触碰 content，无需 --raw；ts 为秒级时间戳） ─────────
-const SQL_TOPIC_INIT = `
+export const SQL_TOPIC_INIT = `
 WITH m AS (SELECT ts, sender_account_name AS member, LAG(ts) OVER (ORDER BY ts) AS prev FROM message)
 SELECT COALESCE(NULLIF(member,''),'unknown') AS member, COUNT(*) AS initiations
 FROM m WHERE prev IS NULL OR ts - prev > 14400
@@ -39,16 +48,22 @@ SELECT date(ts, 'unixepoch', 'localtime') AS day, COUNT(*) AS cnt
 FROM message GROUP BY day ORDER BY day`
 
 // ── 异常窗口检测（统计层给原文"划重点"） ────────────────
-function detectWindows(dailyRows) {
+export function detectWindows(dailyRows) {
   const map = new Map(dailyRows.map(r => [r.day, r.cnt]))
   if (!dailyRows.length) return { silence: [], bursts: [], windows: [] }
   const days = []
-  let d = new Date(dailyRows[0].day + 'T00:00:00')
-  const end = new Date(dailyRows[dailyRows.length - 1].day + 'T00:00:00')
+  // The SQL query already returns local calendar dates. Use UTC only as a
+  // calendar arithmetic container so the host timezone cannot shift a day.
+  const calendar = day => {
+    const [year, month, date] = String(day).split('-').map(Number)
+    return new Date(Date.UTC(year, month - 1, date))
+  }
+  let d = calendar(dailyRows[0].day)
+  const end = calendar(dailyRows[dailyRows.length - 1].day)
   while (d <= end) {
     const key = d.toISOString().slice(0, 10)
     days.push({ day: key, cnt: map.get(key) || 0 })
-    d.setDate(d.getDate() + 1)
+    d.setUTCDate(d.getUTCDate() + 1)
   }
   const nz = days.filter(x => x.cnt > 0).map(x => x.cnt).sort((a, b) => a - b)
   const median = nz.length ? nz[Math.floor(nz.length / 2)] : 0
@@ -77,8 +92,9 @@ function detectWindows(dailyRows) {
 }
 
 function shift(dateStr, delta) {
-  const d = new Date(dateStr + 'T00:00:00')
-  d.setDate(d.getDate() + delta)
+  const [year, month, date] = String(dateStr).split('-').map(Number)
+  const d = new Date(Date.UTC(year, month - 1, date))
+  d.setUTCDate(d.getUTCDate() + delta)
   return d.toISOString().slice(0, 10)
 }
 
@@ -86,6 +102,7 @@ function shift(dateStr, delta) {
 const cache = new Map()
 
 export async function buildEvidencePack(sessionId) {
+  sessionId = validateSessionId(sessionId)
   const key = `${sessionId}:${new Date().toISOString().slice(0, 13)}`
   if (cache.has(key)) return cache.get(key)
   if (cache.size > 8) cache.clear()
@@ -95,6 +112,9 @@ export async function buildEvidencePack(sessionId) {
 }
 
 async function _build(sessionId) {
+  const sessions = await clbJson(['sessions', 'list', '--format', 'json'])
+  const session = (sessions.items || []).find(x => x.id === sessionId)
+  if (session) assertPrivateChat(session)
   const warnings = []
 
   // L0：统计底盘 + SQL 指标（串行队列防 meta 竞争，仍一次发起、并发收集）
@@ -156,8 +176,8 @@ async function _build(sessionId) {
 // stats 返回体里可能有冗余 meta，做一层瘦身
 function strip(data) {
   if (!data || typeof data !== 'object') return data
-  const { items, rows, ...rest } = data
-  return Object.keys(rest).length || (!items && !rows) ? rest : data
+  const { meta, ...rest } = data
+  return rest
 }
 
 // ── 路由：会话列表 + 证据包预览 ────────────────────────
@@ -174,8 +194,14 @@ export function registerChatlabRoutes(app) {
   app.get('/api/analyze/evidence', async (req, res) => {
     const { sessionId } = req.query
     if (!sessionId) return res.status(400).json({ ok: false, error: '缺少 sessionId' })
+    let validSessionId
     try {
-      const pack = await buildEvidencePack(String(sessionId))
+      validSessionId = validateSessionId(sessionId)
+    } catch (e) {
+      return res.status(400).json({ ok: false, error: e.message })
+    }
+    try {
+      const pack = await buildEvidencePack(validSessionId)
       res.json({ ok: true, data: pack })
     } catch (e) {
       res.status(500).json({ ok: false, error: e.message })

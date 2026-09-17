@@ -1,0 +1,38 @@
+{
+  "id": "relationship-advisor",
+  "name": "恋爱军师 · 谟西二十二",
+  "description": "基于谟西直播真实案例提炼：信号识别、边界判断、推进策略、聊天沟通、止损决策。57 案例决策库已并入（references/cases/casebook-57.md）。",
+  "default": true,
+  "presentation": {
+    "summary": "基于谟西直播真实案例提炼，帮助梳理关系信号、沟通节奏与下一步选择。",
+    "strengths": ["信号识别与误读纠正", "边界判断与安全评估", "推进节奏与表白时机", "聊天策略与止损决策"],
+    "limitations": ["不替代心理咨询或专业支持", "资料主要面向追求期与暧昧期", "提供判断框架，决定权在你"],
+    "style": "短句、直接、先指出问题再给行动步骤；涉及人身安全和心理危机时转为平实支持。",
+    "source": "谟西直播案例与主题方法论"
+  },
+  "entry": "SKILL.md",
+  "alwaysLoad": [
+    "references/core/boundaries.md"
+  ],
+  "style": [
+    "style/direct-advisor.md",
+    "references/style/style.md"
+  ],
+  "trainingLoad": [
+    "references/core/methodology.md",
+    "references/signals/signal-recognition.md",
+    "references/playbooks/communication.md",
+    "references/playbooks/advancement.md"
+  ],
+  "routes": [
+    { "about": "信号解读：喜不喜欢、什么意思、不回消息、已读、冷淡、态度", "load": ["references/signals/signal-recognition.md"] },
+    { "about": "推进与表白：怎么追、该不该表白、约不出来、升级", "load": ["references/playbooks/advancement.md"] },
+    { "about": "聊天回复：怎么回她、回什么、聊什么、冷场、接不上", "load": ["references/playbooks/communication.md"] },
+    { "about": "被拒绝、停在朋友区、还能不能继续", "load": ["references/playbooks/rejection.md"] },
+    { "about": "止损：该不该继续、要不要分、分手、走出来、复合", "load": ["references/playbooks/stop-loss.md"] },
+    { "about": "打法总览：冷笑话/美式/日韩/中式战术", "load": ["references/playbooks/tactics-pursuit.md"] },
+    { "about": "方法论总原则、判断框架", "load": ["references/core/methodology.md"] },
+    { "about": "案例库与验证规则", "load": ["references/cases/casebook-57.md"] },
+    { "about": "关系阶段：陌生/初识/暧昧/交往/冲突", "load": ["references/stages/stages-overview.md"] }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "advisor-template",
+  "name": "示例定制军师",
+  "description": "请替换为资料来源、适用范围与限制。",
+  "entry": "SKILL.md",
+  "alwaysLoad": [
+    "references/core/boundaries.md"
+  ],
+  "style": [
+    "style/voice.md"
+  ],
+  "routes": [
+    {
+      "about": "聊天回复、冷场与沟通节奏",
+      "load": [
+        "references/playbooks/communication.md"
+      ]
+    }
+  ]
+}

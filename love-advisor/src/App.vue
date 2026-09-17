@@ -1,164 +1,356 @@
 <script setup>
-import { ref, reactive, nextTick } from 'vue'
+import { computed, onBeforeUnmount, provide, ref } from 'vue'
 import Sidebar from './components/Sidebar.vue'
-import MessageList from './components/MessageList.vue'
-import ChatInput from './components/ChatInput.vue'
 import ImportDialog from './components/ImportDialog.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
+import WorkspaceModal from './components/WorkspaceModal.vue'
+import ChatExplorer from './components/ChatExplorer.vue'
+import InsightPanel from './components/InsightPanel.vue'
+import AdvisorManager from './components/AdvisorManager.vue'
+import ChatView from './views/ChatView.vue'
+import TrainingView from './views/TrainingView.vue'
+import { useAdvisorApp } from './composables/useAdvisorApp.js'
 
-// ── 会话状态（MVP: localStorage 持久化）──────────────────
-const STORAGE_KEY = 'love-advisor-conversations'
-const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null')
+const {
+  toastText, showToast,
+  settings, updateSettings,
+  currentId, currentCaseId,
+  generating,
+  collapsed, showImport, showSettings,
+  activeView, layoutMode, setLayoutMode, dataSession, explorerFilter,
+  draft, selectedChat,
+  openExplorer, openInsight, backToChat, openAdvisors, openTraining,
+  fillDraft, clearSelection, removeSelection,
+  cases, showCaseModal, caseModalId, initialCaseSession,
+  refreshCases, openCaseModal, onCaseDeleted,
+  importedSessions, chatlabSessions, selectedSessionId,
+  conversations, currentConv, hasMessages, loadingConversation,
+  newConversation, selectConversation, deleteConversation,
+  runState, autoSkillName, onSend, cancelRun,
+  askAboutMessage, chooseChatMessages, importForWorkspace,
+  onJumpMessages, onImported, onSelectCase, onCaseChanged, selectSession,
+  archiveConversation, createCaseForSession,
+  regenerate, onMemoryCandidateChanged,
+} = useAdvisorApp()
 
-const conversations = ref(saved?.conversations || [])
-const currentId = ref(saved?.currentId || null)
-const settings = reactive(saved?.settings || {
-  apiBase: '', apiKey: '', model: '', // LLM：暂由服务端 .env 提供，字段占位
-  qceBase: '', qceToken: '', qcePath: '', // QQ Chat Exporter 直连配置
+provide('toast', showToast)
+
+const currentCaseMemoryCandidates = computed(() => {
+  const caseId = currentConv()?.caseId
+  return cases.value?.find?.(item => item.id === caseId)?.memoryCandidates || []
 })
-const showImport = ref(false)
-const showSettings = ref(false)
-const importedSessions = ref([]) // 已导入的 ChatLab 会话
-const chatlabSessions = ref([])  // ChatLab 全部会话
-const selectedSessionId = ref('') // 当前分析对象
 
-async function fetchSessions() {
-  try {
-    const res = await fetch('/api/sessions')
-    const j = await res.json()
-    if (j.ok) {
-      chatlabSessions.value = j.data.items
-      if (!selectedSessionId.value && chatlabSessions.value.length) {
-        selectedSessionId.value = chatlabSessions.value[0].id
-      }
-    }
-  } catch { /* 后端未起时静默 */ }
-}
-fetchSessions()
+// 空会话首页也明确标出当前工作区的对方，避免用户误以为军师会引用其他私聊。
+const currentWorkspacePeerName = computed(() => {
+  const caseId = currentConv()?.caseId || currentCaseId.value
+  return cases.value?.find?.(item => item.id === caseId)?.profileStatus?.peerName || ''
+})
 
-function persist() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    conversations: conversations.value,
-    currentId: currentId.value,
-    settings,
-  }))
+const splitBodyRef = ref(null)
+const splitRatio = ref(57)
+const resizingSplit = ref(false)
+const splitStyle = computed(() => ({ '--split-left': `${splitRatio.value}%` }))
+
+function updateSplitRatio(clientX) {
+  const rect = splitBodyRef.value?.getBoundingClientRect()
+  if (!rect || rect.width <= 0) return
+  const minPaneWidth = Math.min(320, Math.max(220, (rect.width - 9) / 2))
+  const leftWidth = Math.min(
+    Math.max(clientX - rect.left, minPaneWidth),
+    rect.width - minPaneWidth - 9,
+  )
+  splitRatio.value = Math.round((leftWidth / rect.width) * 1000) / 10
 }
 
-function currentConv() {
-  return conversations.value.find(c => c.id === currentId.value)
+function stopSplitResize() {
+  if (!resizingSplit.value) return
+  resizingSplit.value = false
+  window.removeEventListener('pointermove', onSplitPointerMove)
+  window.removeEventListener('pointerup', stopSplitResize)
+  window.removeEventListener('pointercancel', stopSplitResize)
 }
 
-function newConversation() {
-  const conv = { id: Date.now(), title: '新对话', messages: [], skills: [] }
-  conversations.value.unshift(conv)
-  currentId.value = conv.id
-  persist()
+function onSplitPointerMove(event) {
+  updateSplitRatio(event.clientX)
 }
 
-function selectConversation(id) {
-  currentId.value = id
-  persist()
+function startSplitResize(event) {
+  if (event.button !== 0 || window.matchMedia('(max-width: 1024px)').matches) return
+  event.preventDefault()
+  resizingSplit.value = true
+  updateSplitRatio(event.clientX)
+  window.addEventListener('pointermove', onSplitPointerMove)
+  window.addEventListener('pointerup', stopSplitResize)
+  window.addEventListener('pointercancel', stopSplitResize)
 }
 
-function deleteConversation(id) {
-  conversations.value = conversations.value.filter(c => c.id !== id)
-  if (currentId.value === id) currentId.value = conversations.value[0]?.id || null
-  persist()
+function resizeSplitWithKeyboard(event) {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+  event.preventDefault()
+  const rect = splitBodyRef.value?.getBoundingClientRect()
+  if (!rect) return
+  const nextRatio = splitRatio.value + (event.key === 'ArrowLeft' ? -2 : 2)
+  updateSplitRatio(rect.left + rect.width * nextRatio / 100)
 }
 
-// ── 发送 & SSE 流式 ──────────────────────────────────
-const generating = ref(false)
+onBeforeUnmount(stopSplitResize)
 
-async function onSend(text, skills) {
-  if (!currentConv()) newConversation()
-  const conv = currentConv()
-  conv.messages.push({ role: 'user', content: text })
-  if (conv.title === '新对话') conv.title = text.slice(0, 18) || '新对话'
-
-  const aiMsg = { role: 'assistant', content: '', reasoning: '' }
-  conv.messages.push(aiMsg)
-  generating.value = true
-  persist()
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        messages: conv.messages.slice(0, -1),
-        skills,
-        sessionId: selectedSessionId.value,
-      }),
-    })
-    const reader = res.body.getReader()
-    const decoder = new TextDecoder()
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      const chunk = decoder.decode(value, { stream: true })
-      for (const line of chunk.split('\n')) {
-        if (!line.startsWith('data: ')) continue
-        const payload = line.slice(6)
-        if (payload === '[DONE]') continue
-        try {
-          const j = JSON.parse(payload)
-          if (j.t) aiMsg.content += j.t
-          if (j.r) aiMsg.reasoning += j.r
-          if (j.error) aiMsg.content += '\n\n(错误：' + j.error + ')'
-        } catch { /* 半包忽略 */ }
-      }
-    }
-  } catch (e) {
-    aiMsg.content += '\n\n(连接失败：' + e.message + ')'
-  } finally {
-    generating.value = false
-    persist()
+// 当前左栏活跃的私聊会话
+const activeExplorerSession = computed(() => {
+  if (dataSession.value) return dataSession.value
+  if (selectedSessionId.value) {
+    const found = chatlabSessions.value?.find(s => s.id === selectedSessionId.value)
+    if (found) return found
   }
-}
+  if (chatlabSessions.value?.length > 0) {
+    return chatlabSessions.value[0]
+  }
+  return null
+})
 
-// ── 导入回调 ─────────────────────────────────────────
-function onImported(session) {
-  importedSessions.value.push(session)
-  fetchSessions()
+function startSidebarConversation(caseId) {
+  setLayoutMode('chat')
+  return newConversation(caseId)
 }
 </script>
 
 <template>
-  <div class="flex h-full overflow-hidden">
+  <div class="app" :class="{ 'sidebar-collapsed': collapsed }">
+    <Transition name="sidebar-expand">
+      <button v-if="collapsed" class="expand" title="展开侧栏" @click="collapsed = false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m11 17 5-5-5-5" /><path d="m6 17 5-5-5-5" />
+        </svg>
+      </button>
+    </Transition>
+
     <Sidebar
       :conversations="conversations"
       :current-id="currentId"
       :imported-sessions="importedSessions"
-      @new="newConversation"
+      :cases="cases"
+      :current-case-id="currentCaseId"
+      :active-view="activeView"
+      :chatlab-sessions="chatlabSessions"
+      @new="startSidebarConversation"
       @select="selectConversation"
       @delete="deleteConversation"
+      @select-case="onSelectCase"
+      @open-cases="openCaseModal"
+      @renamed="refreshCases"
+      @new-case="openCaseModal()"
       @open-settings="showSettings = true"
+      @open-advisors="openAdvisors"
+      @open-training="openTraining"
+      @toggle-collapse="collapsed = true"
+      @browse-session="s => openExplorer(s)"
+      @insight-session="openInsight"
+      @archive-conv="({ convId, caseId }) => archiveConversation(convId, caseId)"
+      @create-case-for-session="s => createCaseForSession(s)"
     />
-    <main class="flex-1 flex flex-col min-w-0">
-      <MessageList
-        :messages="currentConv()?.messages || []"
-        :generating="generating"
-        class="flex-1"
-      />
-      <ChatInput
-        :generating="generating"
-        :sessions="chatlabSessions"
-        :selected-session-id="selectedSessionId"
-        @send="onSend"
-        @open-import="showImport = true"
-        @select-session="id => (selectedSessionId = id)"
-      />
+
+    <main class="main" :class="{ 'chat-mode': hasMessages && (activeView === 'chat' || layoutMode === 'chat') }">
+      <Transition name="app-view" mode="out-in">
+        <!-- 智囊管理系统全屏视图 -->
+        <AdvisorManager v-if="activeView === 'advisors'" key="advisors" @back="backToChat" />
+
+        <!-- 独立模拟聊天训练场 -->
+        <TrainingView
+          v-else-if="activeView === 'training'"
+          key="training"
+          :cases="cases"
+          @back="backToChat"
+        />
+
+        <!-- 数据洞察全屏视图 -->
+        <InsightPanel
+          v-else-if="activeView === 'insight' && (activeExplorerSession || dataSession)"
+          key="insight"
+          :session="activeExplorerSession || dataSession"
+          @back="backToChat"
+          @browse="s => openExplorer(s)"
+        />
+
+        <!-- IDE 风格工作台：左侧聊天记录 + 右侧军师对话 -->
+        <div v-else key="workspace" class="ide-workspace">
+        <!-- IDE 顶栏 -->
+        <header class="ide-header">
+          <!-- 左侧：当前私聊 -->
+          <div class="ide-header-left">
+            <div class="ide-session-selector">
+              <span class="ide-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </span>
+              <span
+                v-if="activeExplorerSession"
+                class="ide-session-name"
+                :title="activeExplorerSession.name"
+              >
+                {{ activeExplorerSession.name }}
+              </span>
+              <button v-else class="ide-import-mini-btn" @click="showImport = true">
+                + 导入记录
+              </button>
+            </div>
+          </div>
+
+          <!-- 中间：全屏会话 / 双栏对照 -->
+          <div class="ide-header-center">
+            <div class="ide-layout-switch" role="group" aria-label="工作区布局模式">
+              <button
+                type="button"
+                class="layout-btn"
+                :class="{ active: layoutMode === 'chat' }"
+                title="全屏会话：专注军师对话"
+                aria-label="全屏会话"
+                @click="setLayoutMode('chat')"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M16 3v18" />
+                </svg>
+                <span>全屏会话</span>
+              </button>
+
+              <button
+                type="button"
+                class="layout-btn"
+                :class="{ active: layoutMode === 'split' }"
+                title="双栏对照：左侧聊天记录 + 右侧军师会话"
+                aria-label="双栏对照"
+                @click="setLayoutMode('split')"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M12 3v18" />
+                </svg>
+                <span>双栏对照</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 右侧：数据洞察与辅助工具入口 -->
+          <div class="ide-header-right">
+            <button
+              v-if="activeExplorerSession"
+              class="ide-tool-btn"
+              title="查看当前私聊记录的沟通趋势、话题与情绪分析"
+              aria-label="数据洞察"
+              @click="openInsight(activeExplorerSession)"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18" /><path d="M7 14l4-4 3 3 5-6" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- IDE 主区分栏区域 -->
+        <div
+          ref="splitBodyRef"
+          class="ide-workspace-body"
+          :class="[`mode-${layoutMode}`, { 'is-resizing': resizingSplit }]"
+          :style="splitStyle"
+        >
+          <!-- 左栏：聊天记录浏览器 -->
+          <div class="ide-pane-left">
+            <ChatExplorer
+              v-if="activeExplorerSession"
+              :session="activeExplorerSession"
+              :key="activeExplorerSession.id"
+              :is-split="layoutMode === 'split'"
+              :initial-selection="selectedChat?.sessionId === activeExplorerSession.id ? selectedChat.messages : []"
+              :initial-q="explorerFilter.q"
+              :initial-since="explorerFilter.since"
+              @back="setLayoutMode('chat')"
+              @ask="askAboutMessage"
+              @insight="openInsight(activeExplorerSession)"
+            />
+            <div v-else class="ide-empty-left">
+              <div class="ide-empty-card">
+                <div class="empty-icon-wrap">💬</div>
+                <h3>未选择私聊记录</h3>
+                <p>请从左侧私聊列表选择会话，或导入聊天数据开启深度剖析。</p>
+                <button class="ide-empty-btn" @click="showImport = true">
+                  + 导入私聊记录
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 双栏分界线 -->
+          <div
+            class="ide-split-divider"
+            role="separator"
+            aria-label="调整聊天记录与军师会话的宽度"
+            aria-orientation="vertical"
+            :aria-valuenow="Math.round(splitRatio)"
+            :aria-hidden="layoutMode !== 'split'"
+            :tabindex="layoutMode === 'split' ? 0 : -1"
+            @pointerdown="startSplitResize"
+            @keydown="resizeSplitWithKeyboard"
+          ></div>
+
+          <!-- 右栏：军师 Copilot 对话 -->
+          <div class="ide-pane-right">
+            <ChatView
+              v-model:draft="draft"
+              :loading="loadingConversation"
+              :has-messages="hasMessages"
+              :messages="currentConv()?.messages || []"
+              :generating="generating"
+              :run-state="runState"
+              :auto-skill="autoSkillName"
+              :case-id="currentConv()?.caseId || ''"
+              :memory-candidates="currentCaseMemoryCandidates"
+              :peer-name="currentWorkspacePeerName"
+              :selection="selectedChat"
+              :is-split="layoutMode === 'split'"
+              @fill="fillDraft"
+              @jump-messages="onJumpMessages"
+              @send="onSend"
+              @cancel="cancelRun"
+              @choose-messages="chooseChatMessages"
+              @clear-selection="clearSelection"
+              @remove-selection="removeSelection"
+              @open-import="showImport = true"
+              @regenerate="regenerate"
+              @memory-candidate-changed="onMemoryCandidateChanged"
+            />
+          </div>
+        </div>
+        </div>
+      </Transition>
     </main>
 
-    <ImportDialog
-      v-if="showImport"
-      @close="showImport = false"
-      @imported="onImported"
-    />
-    <SettingsDialog
-      v-if="showSettings"
-      :settings="settings"
-      @close="showSettings = false"
+    <div class="toast" :class="{ show: !!toastText }">{{ toastText }}</div>
+
+    <Transition name="modal-reveal">
+      <ImportDialog
+        v-if="showImport"
+        :settings="settings"
+        @close="showImport = false"
+        @imported="onImported"
+        @update-settings="updateSettings"
+      />
+    </Transition>
+    <Transition name="modal-reveal">
+      <SettingsDialog
+        v-if="showSettings"
+        :settings="settings"
+        @close="showSettings = false"
+      />
+    </Transition>
+    <WorkspaceModal
+      :open="showCaseModal"
+      :case-id="caseModalId"
+      :sessions="chatlabSessions"
+      :initial-session="initialCaseSession"
+      @close="showCaseModal = false; initialCaseSession = null"
+      @deleted="onCaseDeleted"
+      @changed="onCaseChanged"
+      @import="importForWorkspace"
     />
   </div>
 </template>

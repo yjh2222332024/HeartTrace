@@ -4,6 +4,7 @@
 
 import json
 from pathlib import Path
+from project_paths import A_PRIORITY_DIR, CASE_JSON_DIR
 
 def deep_read_cases(json_dir, sample_size=10):
     """深度阅读案例，寻找策略模式"""
@@ -44,7 +45,7 @@ def deep_read_cases(json_dir, sample_size=10):
     return patterns
 
 def main():
-    json_dir = r"D:\code\lianai\A-priority\恋爱方法论_JSON_68份"
+    json_dir = CASE_JSON_DIR
 
     print("=== 深度阅读前10个案例，寻找策略模式 ===\n")
 
@@ -62,7 +63,7 @@ def main():
             print(f"  {j}. {hyp[:200]}...")
 
     # 保存详细数据供人工分析
-    output_file = r"D:\code\lianai\A-priority\深度案例分析_样本10.json"
+    output_file = A_PRIORITY_DIR / '深度案例分析_样本10.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(patterns, f, ensure_ascii=False, indent=2)
 

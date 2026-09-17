@@ -5,6 +5,7 @@
 import json
 from pathlib import Path
 from collections import defaultdict, Counter
+from project_paths import A_PRIORITY_DIR, CASE_JSON_DIR
 
 def extract_deep_patterns(json_dir):
     """从所有案例中提取深层模式"""
@@ -112,7 +113,7 @@ def cluster_similar_principles(items, key='text'):
     return clusters
 
 def main():
-    json_dir = r"D:\code\lianai\A-priority\恋爱方法论_JSON_68份"
+    json_dir = CASE_JSON_DIR
 
     print("=== 提取深层方法论 ===\n")
 
@@ -167,7 +168,7 @@ def main():
         }
     }
 
-    output_file = r"D:\code\lianai\A-priority\深层方法论_聚类.json"
+    output_file = A_PRIORITY_DIR / '深层方法论_聚类.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 

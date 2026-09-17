@@ -4,6 +4,7 @@
 
 import json
 from collections import defaultdict
+from project_paths import A_PRIORITY_DIR
 
 def load_methods(filepath):
     """加载提取的方法数据"""
@@ -83,7 +84,7 @@ def build_rule_card(method_name, cluster, level, count):
 
 def main():
     # 加载数据
-    methods = load_methods(r"D:\code\lianai\A-priority\方法提取结果.json")
+    methods = load_methods(A_PRIORITY_DIR / '方法提取结果.json')
 
     # 聚类
     clusters = cluster_by_method_name(methods)
@@ -137,7 +138,7 @@ def main():
         'case_heuristics': case_heuristics
     }
 
-    output_file = r"D:\code\lianai\A-priority\恋爱方法论_规则库.json"
+    output_file = A_PRIORITY_DIR / '恋爱方法论_规则库.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(rule_library, f, ensure_ascii=False, indent=2)
 

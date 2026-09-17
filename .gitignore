@@ -1,8 +1,11 @@
 # 环境与密钥
 .env
 *.env
+!.env.example
 node_modules/
 dist/
+__pycache__/
+*.log
 
 # 数据与中间产物（版权/隐私/大体积）
 subtitles/
@@ -13,6 +16,17 @@ expert_methodology_json_238/
 expert_methodology_json_low_redo/
 sample-qq-export.json
 
+# 本地交付物与临时工作目录（源码保留在 skills/、love-advisor/）
+/artifacts/
+/tmp/
+*.zip
+*.tgz
+*.skill
+/love-advisor/artifacts/
+
+# 已迁入 npm 应用目录的内置军师，本目录仅保留本地兼容副本
+/skills/relationship-advisor-skill/
+
 # 第三方工具副本（各自独立仓库）
 ChatLab/
 nuwa-skill/
@@ -22,3 +36,6 @@ bilibili-ai-subtitle/
 # 系统
 Thumbs.db
 .DS_Store
+
+# 应用本地数据（会话/Run 记录）
+love-advisor/server/.data/

@@ -6,6 +6,7 @@ import json
 import os
 from collections import defaultdict, Counter
 from pathlib import Path
+from project_paths import A_PRIORITY_DIR, CASE_JSON_DIR
 
 def extract_all_methods(json_dir):
     """提取所有方法并统计"""
@@ -70,7 +71,7 @@ def analyze_methods(methods):
     return stats
 
 def main():
-    json_dir = r"D:\code\lianai\A-priority\恋爱方法论_JSON_68份"
+    json_dir = CASE_JSON_DIR
 
     print("开始提取方法...")
     methods, invalid = extract_all_methods(json_dir)
@@ -124,7 +125,7 @@ def main():
         'invalid_files': invalid
     }
 
-    output_file = r"D:\code\lianai\A-priority\方法提取结果.json"
+    output_file = A_PRIORITY_DIR / '方法提取结果.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 

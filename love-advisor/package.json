@@ -1,20 +1,57 @@
 {
   "name": "love-advisor",
-  "private": true,
   "version": "0.1.0",
+  "description": "基于私密聊天记录客观取证与方法论沉淀的长程情感军师 Agent",
   "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "bin": {
+    "love-advisor": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "server",
+    "!server/.data",
+    "!server/*.test.js",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "start": "node bin/cli.js",
+    "prepack": "npm run build",
     "dev": "vite",
     "dev:server": "node server/index.js",
     "dev:all": "concurrently \"npm:dev\" \"npm:dev:server\"",
     "build": "vite build",
+    "test": "node --test server/runtime-paths.test.js server/qce.test.js server/prompt.test.js server/runs.test.js server/llm.test.js server/skill.test.js server/skill-import.test.js server/tools.test.js server/context.test.js server/cases.test.js server/qqmedia.test.js server/importer.test.js server/chatgate.test.js server/profile.test.js server/settings.test.js server/selection.test.js server/bilibili.test.js server/builder.test.js server/training.test.js src/lib/sse.test.js src/lib/mvp.test.js",
     "preview": "vite preview"
   },
+  "keywords": [
+    "ai",
+    "agent",
+    "love-advisor",
+    "chatlab",
+    "relationship",
+    "llm"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjh2222332024/lianai.git"
+  },
   "dependencies": {
+    "chatlab-cli": "^0.37.1",
     "dompurify": "^3.4.14",
+    "echarts": "^6.1.0",
     "express": "^5.2.1",
+    "lucide-vue-next": "^0.577.0",
     "marked": "^18.0.11",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-virtual-scroller": "^3.0.5",
+    "yauzl": "^2.10.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

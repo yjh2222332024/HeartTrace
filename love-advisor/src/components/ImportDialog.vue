@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
-const emit = defineEmits(['close', 'imported'])
+const props = defineProps({ settings: { type: Object, required: true } })
+const emit = defineEmits(['close', 'imported', 'update-settings'])
 
 const tab = ref('qq') // 'qq' | 'file'
 
@@ -10,7 +11,7 @@ const error = ref('')
 const busy = ref(false)
 
 function qceHeaders() {
-  const s = JSON.parse(localStorage.getItem('love-advisor-conversations') || '{}')?.settings || {}
+  const s = props.settings
   const h = {}
   if (s.qceBase) h['X-QCE-Base'] = s.qceBase
   if (s.qceToken) h['X-QCE-Token'] = s.qceToken
@@ -18,10 +19,7 @@ function qceHeaders() {
   return h
 }
 function saveQceSettings(patch) {
-  const KEY = 'love-advisor-conversations'
-  const all = JSON.parse(localStorage.getItem(KEY) || '{}')
-  all.settings = { ...(all.settings || {}), ...patch }
-  localStorage.setItem(KEY, JSON.stringify(all))
+  emit('update-settings', patch)
 }
 
 // ── Tab 1: QQ 直连 ───────────────────────────────────
@@ -31,7 +29,7 @@ const tokenDraft = ref('')
 const confirmLaunch = ref(false)
 const launchStartTime = ref(0)
 const peers = ref([])          // 好友/群列表
-const peerTab = ref('friends') // friends | groups
+const peerTab = ref('friends') // 只允许一对一好友
 const search = ref('')
 const selected = ref(null)
 const taskProgress = ref(0)
@@ -93,37 +91,26 @@ async function saveToken() {
 
 async function loadPeers() {
   try {
-    const [f, g] = await Promise.all([
-      fetch('/api/qq/friends', { headers: qceHeaders() }).then(r => r.json()),
-      fetch('/api/qq/groups', { headers: qceHeaders() }).then(r => r.json()),
-    ])
+    const f = await fetch('/api/qq/friends', { headers: qceHeaders() }).then(r => r.json())
     const fr = Array.isArray(f.data) ? f.data : (f.data?.friends || f.data?.list || [])
-    const gr = Array.isArray(g.data) ? g.data : (g.data?.groups || g.data?.list || [])
     friends.value = fr.map(x => ({
       uid: String(x.uid || x.userUid || x.peerUid || x.uin || ''),
       name: x.nick || x.nickname || x.remark || x.name || x.userNick || String(x.uin || '未知好友'),
       sub: x.uin || x.QID || x.uid || '',
     })).filter(x => x.uid)
-    groups.value = gr.map(x => ({
-      uid: String(x.groupCode || x.group_code || x.peerUid || ''),
-      name: x.groupName || x.group_name || x.name || '未知群聊',
-      sub: x.memberCount != null ? `${x.memberCount} 人` : (x.group_code || ''),
-    })).filter(x => x.uid)
-    if (!friends.value.length && !groups.value.length && (f.error || g.error)) {
-      error.value = '获取会话列表失败: ' + (f.error || g.error)
+    if (!friends.value.length && f.error) {
+      error.value = '获取好友列表失败: ' + f.error
     }
   } catch (e) {
     error.value = '获取会话列表失败: ' + e.message
   }
 }
 const friends = ref([])
-const groups = ref([])
 
 const peerList = computed(() => {
-  const list = peerTab.value === 'friends' ? friends.value : groups.value
   const q = search.value.trim().toLowerCase()
-  if (!q) return list
-  return list.filter(p => p.name.toLowerCase().includes(q) || p.uid.toLowerCase().includes(q))
+  if (!q) return friends.value
+  return friends.value.filter(p => p.name.toLowerCase().includes(q) || p.uid.toLowerCase().includes(q))
 })
 
 function pickPeer(p) {
@@ -137,7 +124,8 @@ async function exportAndImport() {
   phase.value = 'exporting'
   taskProgress.value = 0
   try {
-    const chatType = peerTab.value === 'groups' ? 2 : 1
+    if (peerTab.value === 'groups') throw new Error('群聊不能导入为恋爱工作区')
+    const chatType = 1
     const res = await fetch('/api/qq/export', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', ...qceHeaders() },
@@ -245,6 +233,9 @@ async function dryRun() {
     const res = await fetch('/api/import/dry-run', { method: 'POST', body: fd })
     const j = await res.json()
     if (!j.ok) throw new Error(j.error || '预览失败')
+    if (j.data.type && j.data.type !== 'private') {
+      throw new Error(`「${j.data.name || file.value.name}」是群聊。恋爱军师只分析一对一私聊。`)
+    }
     preview.value = j.data
   } catch (e) {
     error.value = e.message
@@ -288,8 +279,11 @@ async function confirmImport() {
   <div class="fixed inset-0 z-50 flex items-center justify-center">
     <div class="absolute inset-0 bg-black/25 backdrop-blur-[2px]" @click="$emit('close')"></div>
     <div class="relative w-[520px] max-w-[94vw] max-h-[86vh] flex flex-col rounded-3xl bg-white shadow-float-lg border border-sakura-100 p-6 animate-bubble-in">
-      <h2 class="text-lg font-semibold text-gray-800 mb-1">导入 QQ 聊天记录</h2>
-      <p class="text-xs text-gray-400 mb-4 leading-relaxed">数据仅导入本机 ChatLab，不会上传到任何服务器。</p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-lg font-semibold text-stone-900">导入 QQ 聊天记录</h2>
+        <button class="ui-btn-pill" @click="emit('close')">关闭</button>
+      </div>
+      <p class="text-xs text-stone-500 mb-4 leading-relaxed">聊天记录保存在本机，自动建档会将聊天内容发送到你配置的模型服务。</p>
 
       <!-- Tab 切换 -->
       <div class="flex gap-1 p-1 rounded-2xl bg-gray-50 border border-sakura-50 mb-4">
@@ -338,7 +332,7 @@ async function confirmImport() {
         <div v-else-if="phase === 'unauth'" class="rounded-2xl border border-sakura-100 bg-sakura-50/60 p-5 text-sm space-y-3">
           <div class="font-medium text-gray-700">QCE 需要访问令牌</div>
           <p class="text-xs text-gray-500 leading-relaxed">
-            Token 在 QCE 控制台日志或其 <code class="bg-white px-1 rounded border">security.json</code> 里；也可以直接复制 QCE 界面一键登录链接中的 token。
+            Token 在 QCE 界面或 <code class="bg-white px-1 rounded border">%LOCALAPPDATA%\QQChatExporter\.qce-config\security.json</code> 的 accessToken 字段里；若 QCE 装在默认路径，服务端会自动读取，通常无需手动填写。
           </p>
           <div class="flex gap-2">
             <input v-model="tokenDraft" type="password" placeholder="粘贴 Access Token"
@@ -358,15 +352,7 @@ async function confirmImport() {
           </div>
 
           <div v-if="phase === 'ready'" class="space-y-3">
-            <!-- 子 Tab: 好友/群聊 -->
-            <div class="flex gap-1 p-1 rounded-xl bg-gray-50 border border-sakura-50">
-              <button class="flex-1 rounded-lg py-1.5 text-xs font-medium transition-all"
-                :class="peerTab === 'friends' ? 'bg-white shadow-sm text-sakura-600' : 'text-gray-400'"
-                @click="peerTab = 'friends'">好友 · {{ friends.length }}</button>
-              <button class="flex-1 rounded-lg py-1.5 text-xs font-medium transition-all"
-                :class="peerTab === 'groups' ? 'bg-white shadow-sm text-sakura-600' : 'text-gray-400'"
-                @click="peerTab = 'groups'">群聊 · {{ groups.length }}</button>
-            </div>
+            <div class="text-[11px] text-gray-400">只导入一对一好友私聊，群聊已拦截。</div>
             <!-- 搜索 -->
             <input v-model="search" placeholder="搜索名称 / QQ号 / 群号…"
               class="w-full rounded-xl border border-sakura-100 focus:border-sakura-300 outline-none px-3.5 py-2 text-xs transition-colors" />
@@ -413,7 +399,9 @@ async function confirmImport() {
         <div v-else-if="phase === 'done'" class="rounded-2xl bg-green-50 border border-green-100 p-4 text-sm animate-bubble-in">
           <div class="text-green-600 font-medium mb-1">✓ 导入成功</div>
           <div class="text-gray-600">
-            会话 <code class="text-xs bg-white px-1.5 py-0.5 rounded-md border">{{ done.sessionId }}</code>（{{ done.name }}）已就绪，可在对话中让助手分析。
+            会话 <code class="text-xs bg-white px-1.5 py-0.5 rounded-md border">{{ done.sessionId }}</code>（{{ done.name }}）已导入。
+            <span v-if="done.workspace">已创建工作区「{{ done.workspace.title }}」，请确认身份与档案草稿。</span>
+            <span v-else-if="done.workspaceError" class="text-amber-600">工作区未建档：{{ done.workspaceError }}</span>
           </div>
         </div>
       </div>
@@ -464,7 +452,7 @@ async function confirmImport() {
 
         <!-- 成功卡（已回查友好会话名） -->
         <div v-if="fileDone" class="mt-4 rounded-2xl bg-green-50 border border-green-100 p-4 text-sm space-y-1.5 animate-bubble-in">
-          <div class="text-green-600 font-medium">✓ 导入成功，已加入分析对象</div>
+          <div class="text-green-600 font-medium">✓ 导入成功，已绑定一对一工作区</div>
           <div class="text-gray-700">{{ fileDone.name }} <span class="text-gray-400">· {{ fileDone.totalMessages }} 条消息</span></div>
           <div class="text-[11px] text-gray-300 font-mono truncate">{{ fileDone.sessionId }}</div>
         </div>

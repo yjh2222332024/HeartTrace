@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师包制作"
+  short_description: "把已授权资料整理成可审核、可导入的军师 Skill 压缩包"
+  default_prompt: "使用 $advisor-package-authoring 将这些已授权资料整理为可审核、可导入 Love Advisor 的军师包。"

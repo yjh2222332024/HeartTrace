@@ -1,0 +1,9 @@
+server/.data/
+server/*.test.js
+*.test.js
+.env
+.env.*
+.git
+.github
+node_modules/
+src/
