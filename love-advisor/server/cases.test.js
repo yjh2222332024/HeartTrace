@@ -13,7 +13,7 @@ const {
   createCase, getCase, updateCase, deleteCase, addCaseMemory, deleteCaseMemory, listCases,
   addCaseMemoryCandidates, updateCaseMemoryCandidate, acceptCaseMemoryCandidate, rejectCaseMemoryCandidate,
   createConversation, updateConversation, getConversation, createTrainingSession, listTrainingSessions,
-  upsertImportJob, listImportJobs, _writeJsonForTest,
+  upsertImportJob, listImportJobs, _writeJsonForTest, _resetStoreCacheForTest,
 } = await import('./store.js')
 
 const { buildCaseBlock } = await import('./runs.js')
@@ -373,4 +373,33 @@ test('confirmWorkspaceProfile：字段级安全合并，绝不被草稿空数组
   assert.deepEqual(updated.her.callHistory, ['2026-01-01 通话'])
   assert.deepEqual(updated.relationship.boundaries, ['互不看手机', '有矛盾当天解决'])
   assert.equal(updated.relationship.keyEvents[0].event, '一起自驾')
+})
+
+test('confirmWorkspaceProfile：切换机主会交换身份并清空旧派生画像，要求重新分析', () => {
+  const c = createCase({ title: '身份切换测试' })
+  updateCase(c.id, {
+    her: { persona: '原对方画像', commStyle: '原对方风格' },
+    me: { style: '原机主风格' },
+    profileStatus: {
+      status: 'draft', ownerName: '我', peerName: '她', ownerConfirmed: false,
+      draft: { summary: '旧草稿', her: { persona: '旧她' }, me: { style: '旧我' } },
+    },
+  })
+  const updated = confirmWorkspaceProfile(c.id, { ownerName: '她', peerName: '她' })
+  assert.equal(updated.profileStatus.ownerName, '她')
+  assert.equal(updated.profileStatus.peerName, '我')
+  assert.equal(updated.profileStatus.ownerConfirmed, false)
+  assert.equal(updated.profileStatus.reanalysisRequired, true)
+  assert.equal(updated.profileStatus.draft, null)
+  assert.equal(updated.her.persona, '')
+  assert.equal(updated.me.style, '')
+  assert.equal(updated.baseline.replyLatencyP50, null)
+})
+
+test('store：损坏的数据文件不会静默降级为空数组并被覆盖', () => {
+  const target = path.join(tmpDir, 'cases.json')
+  fs.writeFileSync(target, '{broken json')
+  _resetStoreCacheForTest()
+  assert.throws(() => listCases(), /数据文件损坏/)
+  assert.equal(fs.readFileSync(target, 'utf8'), '{broken json')
 })

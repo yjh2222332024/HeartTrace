@@ -55,14 +55,40 @@ function fmtTime(t) {
   return s.slice(5, 16)
 }
 
-function formatLine(m, ownerName) {
+const MESSAGE_SEGMENT_CHAR_CAP = 600
+
+function messageIdentity(m) {
+  return String(m?.id || m?.messageId || m?.platformMessageId || '').trim()
+}
+
+export function formatLines(m, ownerName) {
   const who = m.senderName === ownerName ? '我' : (m.senderName || '对方')
-  return `${fmtTime(m.time)} ${who}: ${cleanContent(m.content).slice(0, 300)}`
+  const id = messageIdentity(m)
+  const prefix = `${fmtTime(m.time)} ${who}${id ? ` [${id}]` : ''}: `
+  const content = cleanContent(m.content) || '[空消息]'
+  const parts = []
+  for (let offset = 0; offset < content.length; offset += MESSAGE_SEGMENT_CHAR_CAP) {
+    const part = content.slice(offset, offset + MESSAGE_SEGMENT_CHAR_CAP)
+    parts.push(`${prefix}${offset ? '[续] ' : ''}${part}`)
+  }
+  return parts
+}
+
+function messageTimeValue(message) {
+  const raw = message?.time
+  if (raw instanceof Date) return raw.getTime()
+  const text = String(raw || '')
+  const parsed = Date.parse(text)
+  if (Number.isFinite(parsed)) return parsed
+  const slash = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})/)
+  if (slash) return Date.UTC(Number(slash[3]), Number(slash[1]) - 1, Number(slash[2]), Number(slash[4]), Number(slash[5]))
+  return Number.POSITIVE_INFINITY
 }
 
 // ── 全量分片：cursor 翻页 → 按 双约束 切片（时间升序） ──
 export async function buildChunks(sessionId, ownerName, fetchPage) {
   const chunks = []
+  const allMessages = []
   let cursor = ''
   let buf = [], bufSince = '', bufUntil = ''
   const flush = () => {
@@ -79,8 +105,14 @@ export async function buildChunks(sessionId, ownerName, fetchPage) {
   for (;;) {
     const { items, meta } = await fetchPage(sessionId, cursor)
     if (!items.length) break
-    for (const m of items) {
-      const line = formatLine(m, ownerName)
+    allMessages.push(...items)
+    if (!meta?.hasMore || !meta?.nextCursor) break
+    cursor = meta.nextCursor
+  }
+  // ChatLab 返回“最新页优先、页内升序”；统一收集后再排序，避免跨页时间线倒置。
+  allMessages.sort((a, b) => messageTimeValue(a) - messageTimeValue(b))
+  for (const m of allMessages) {
+    for (const line of formatLines(m, ownerName)) {
       if (buf.length && (buf.length >= CHUNK_MSG_LIMIT || buf.join('\n').length + line.length > CHUNK_CHAR_BUDGET)) {
         flush()
       }
@@ -88,8 +120,6 @@ export async function buildChunks(sessionId, ownerName, fetchPage) {
       buf.push(line)
       bufUntil = m.time
     }
-    if (!meta?.hasMore || !meta?.nextCursor) break
-    cursor = meta.nextCursor
   }
   flush()
   return chunks
@@ -377,7 +407,10 @@ async function runImport(job, deps, signal) {
     persistJob(job)
 
     const session = await deps.loadSession(job.sessionId)
-    const { ownerName, peerName } = await deps.resolveOwners(session)
+    const detectedOwners = await deps.resolveOwners(session)
+    const ownerName = job.ownerOverride || detectedOwners.ownerName
+    const peerName = job.peerOverride || detectedOwners.peerName
+    if (!ownerName || !peerName || ownerName === peerName) throw new Error('机主与对方身份无效，请重新选择后再分析')
     Object.assign(job, { ownerName, peerName })
 
     const prev = deps.prevJob?.(job)
@@ -523,6 +556,7 @@ async function runImport(job, deps, signal) {
         ownerName,
         peerName,
         ownerConfirmed: false,
+        reanalysisRequired: false,
         generatedAt: new Date().toISOString(),
         warnings: (job.warnings || []).slice(0, 12),
         draft: final.draft,
@@ -574,7 +608,7 @@ export function createImportRuntime(overrides = {}) {
     ...deps,
     env: typeof deps.env === 'function' ? deps.env() : deps.env,
     fetchPage: overrides.fetchPage || (async (sessionId, cursor) => {
-      const args = ['messages', 'list', '--session', sessionId, '--limit', '500', '--format', 'json']
+      const args = ['messages', 'list', '--session', sessionId, '--limit', '500', '--format', 'json', '--full']
       if (cursor) args.push('--cursor', cursor)
       const j = await clbJson(args)
       return { items: j.data?.items || [], meta: j.meta || {} }
@@ -603,7 +637,7 @@ export function createImportRuntime(overrides = {}) {
   const running = new Map() // jobId -> job（内存对象，支持取消）
   const jobAbortControllers = new Map() // jobId -> AbortController
 
-  async function startForSession(sessionId, { caseId, force } = {}) {
+  async function startForSession(sessionId, { caseId, force, ownerName, peerName } = {}) {
     const session = await deps.loadSession(sessionId)
     let item = caseId ? getCase(caseId) : findCaseBySessionId(session.id)
     if (!item) {
@@ -627,6 +661,8 @@ export function createImportRuntime(overrides = {}) {
       checkpoints: {},
       mapDone: 0, mapTotal: 0, reduceDone: 0, reduceTotal: 0,
       ownerName: '', peerName: '',
+      ownerOverride: ownerName ? String(ownerName).slice(0, 80) : '',
+      peerOverride: peerName ? String(peerName).slice(0, 80) : '',
       since: '', until: '',
       chunks: [], warnings: [], error: '',
       cancelRequested: false,

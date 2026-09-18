@@ -33,15 +33,22 @@ function ensureDir() {
 }
 
 function readJson(file, fallback) {
+  if (!fs.existsSync(file)) return fallback
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'))
-  } catch {
-    return fallback
+  } catch (error) {
+    const wrapped = new Error(`数据文件损坏，已停止读取以避免覆盖原数据：${path.basename(file)}`)
+    wrapped.code = 'DATA_CORRUPTED'
+    wrapped.cause = error
+    throw wrapped
   }
 }
 
 function writeJson(file, data) {
   ensureDir()
+  if (fs.existsSync(file)) {
+    try { fs.copyFileSync(file, `${file}.bak`) } catch { /* 备份失败不阻塞原子写 */ }
+  }
   const tmp = `${file}.${process.pid}.${randomUUID().replaceAll('-', '').slice(0, 8)}.tmp`
   try {
     fs.writeFileSync(tmp, JSON.stringify(data, null, 2))
@@ -429,6 +436,7 @@ export function createTrainingSession({ caseId, advisorId = 'default', scenario,
     initiativeBudget: initiativeBudget === undefined ? createTrainingInitiativeBudget() : normalizedInitiativeBudget(initiativeBudget),
     initiativeUsed: 0,
     pendingInitiative: null,
+    pendingTurn: null,
     privateState: {},
     review: null,
     createdAt: now,
@@ -559,6 +567,18 @@ export function updateTrainingSession(id, patch = {}) {
       throw new Error('训练私有状态必须是对象')
     }
     session.privateState = structuredClone(patch.privateState)
+  }
+  if (patch.pendingTurn !== undefined) {
+    if (patch.pendingTurn === null) session.pendingTurn = null
+    else if (!patch.pendingTurn || typeof patch.pendingTurn !== 'object' || Array.isArray(patch.pendingTurn)) {
+      throw new Error('训练待处理回合必须是对象')
+    } else {
+      session.pendingTurn = {
+        content: String(patch.pendingTurn.content || '').slice(0, 1200),
+        state: ['pending', 'failed'].includes(patch.pendingTurn.state) ? patch.pendingTurn.state : 'pending',
+        updatedAt: new Date().toISOString(),
+      }
+    }
   }
   session.updatedAt = new Date().toISOString()
   saveTrainingSessions()
@@ -701,6 +721,7 @@ function defaultProfileStatus() {
     generatedAt: null,
     warnings: [],
     draft: null,
+    reanalysisRequired: false,
   }
 }
 
@@ -738,6 +759,7 @@ function sanitizeProfileStatus(v) {
     generatedAt: v.generatedAt ? String(v.generatedAt).slice(0, 40) : null,
     warnings: Array.isArray(v.warnings) ? v.warnings.map(s => String(s).slice(0, 200)).slice(0, 12) : [],
     draft: v.draft && typeof v.draft === 'object' ? v.draft : null,
+    reanalysisRequired: !!v.reanalysisRequired,
   }
 }
 
@@ -745,9 +767,9 @@ export function updateCaseBaseline(id, baseline = {}) {
   const item = getCase(id)
   if (!item) return null
   item.baseline = {
-    replyLatencyP50: baseline.replyLatencyP50 ?? item.baseline.replyLatencyP50,
-    initiationRatio: baseline.initiationRatio ?? item.baseline.initiationRatio,
-    msgFrequency: baseline.msgFrequency ?? item.baseline.msgFrequency,
+    replyLatencyP50: baseline.replyLatencyP50 === undefined ? item.baseline.replyLatencyP50 : baseline.replyLatencyP50,
+    initiationRatio: baseline.initiationRatio === undefined ? item.baseline.initiationRatio : baseline.initiationRatio,
+    msgFrequency: baseline.msgFrequency === undefined ? item.baseline.msgFrequency : baseline.msgFrequency,
     updatedAt: new Date().toISOString(),
   }
   touchCase(item)
@@ -1145,6 +1167,17 @@ export function deleteBuilderJob(id) {
   list.splice(idx, 1)
   writeJson(BUILDER_JOB_FILE, list)
   return true
+}
+
+// 测试/开发环境用：清空进程内缓存，让下一次读取重新从磁盘加载。
+// 生产代码不应依赖它；它也不会删除任何数据文件。
+export function _resetStoreCacheForTest() {
+  convs = null
+  runs = null
+  cases = null
+  trainingSessions = null
+  imports = null
+  builderJobs = null
 }
 
 export { writeJson as _writeJsonForTest }

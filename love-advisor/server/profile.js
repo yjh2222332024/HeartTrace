@@ -1,7 +1,7 @@
 import { clb, extractJson } from './qce.js'
 import { validateSessionId, SQL_TOPIC_INIT } from './chatlab.js'
 import { assertPrivateChat } from './chatgate.js'
-import { getCase, updateCase } from './store.js'
+import { getCase, updateCase, updateCaseBaseline } from './store.js'
 
 async function clbJson(args) {
   const j = extractJson(await clb(args))
@@ -94,7 +94,33 @@ export function confirmWorkspaceProfile(caseId, { ownerName, peerName, applyDraf
   if (!item) throw new Error('工作区不存在')
   const draft = item.profileStatus?.draft || {}
   const nextOwner = ownerName ?? item.profileStatus?.ownerName ?? ''
-  const nextPeer = peerName ?? item.profileStatus?.peerName ?? ''
+  const currentOwner = item.profileStatus?.ownerName || ''
+  const currentPeer = item.profileStatus?.peerName || ''
+  // 前端旧版本会始终把旧 peerName 一并提交；如果机主切换成原对方，自动交换双方身份。
+  const nextPeer = nextOwner === currentPeer && (peerName === undefined || peerName === currentPeer)
+    ? currentOwner
+    : (peerName ?? currentPeer)
+  if (!nextOwner || !nextPeer || nextOwner === nextPeer) throw new Error('机主与对方必须是两个不同的人')
+  const identityChanged = nextOwner !== currentOwner || nextPeer !== currentPeer
+  if (identityChanged) {
+    // 旧草稿中的“她/我”已经失去语义，不能直接换名后继续确认。
+    // 清掉派生画像，保留工作区与聊天绑定，随后由路由强制重新分析。
+    const reset = updateCase(caseId, {
+      her: { persona: '', traits: [], likes: [], dislikes: [], commStyle: '', replyStyle: '', callHistory: [] },
+      me: { goal: '', style: '', pitfalls: [] },
+      profileStatus: {
+        ...item.profileStatus,
+        status: 'draft',
+        ownerName: nextOwner,
+        peerName: nextPeer,
+        ownerConfirmed: false,
+        reanalysisRequired: true,
+        draft: null,
+      },
+    })
+    updateCaseBaseline(caseId, { replyLatencyP50: null, initiationRatio: null, msgFrequency: null })
+    return reset
+  }
   const body = {
     profileStatus: {
       ...item.profileStatus,

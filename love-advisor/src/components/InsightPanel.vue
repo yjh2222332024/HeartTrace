@@ -94,12 +94,12 @@ const responseSyncEvaluation = computed(() => {
   const items = data.value?.response?.items || []
   if (!items.length) return '暂无互动时延'
   const valid = items.map(i => i.medianSeconds).filter(v => typeof v === 'number' && v > 0)
-  if (!valid.length) return '即时高频同步'
+  if (!valid.length) return '暂无可用回复时延'
   const avgMed = Math.round(valid.reduce((a, b) => a + b, 0) / valid.length)
-  if (avgMed <= 45) return '秒回高频 · 极高共鸣'
-  if (avgMed <= 180) return '3分钟内响应 · 高度同频'
-  if (avgMed <= 600) return '10分钟内响应 · 节奏平稳'
-  return '从容长程异步交流'
+  if (avgMed <= 45) return '平均回复较快 · 仅反映互动节奏'
+  if (avgMed <= 180) return '平均 3 分钟内响应 · 仅反映时间节奏'
+  if (avgMed <= 600) return '平均 10 分钟内响应 · 回复节奏平稳'
+  return '平均回复间隔较长 · 偏异步交流'
 })
 
 const activityBalanceLabel = computed(() => {
@@ -114,9 +114,9 @@ const activityBalanceSub = computed(() => {
   const items = data.value?.activity?.items || []
   if (items.length < 2) return '单向输出为主'
   const diff = Math.abs((items[0]?.percentage || 50) - (items[1]?.percentage || 50))
-  if (diff <= 10) return '双向奔赴 · 情绪供给极其平衡'
-  if (diff <= 25) return '良性来回 · 互动节奏健康'
-  return '一方分享倾角较为明显'
+  if (diff <= 10) return '双方消息量接近'
+  if (diff <= 25) return '双方消息量较为均衡'
+  return '一方消息量更高'
 })
 
 // ── 图表配置 ────────────────────────────────────────────
@@ -684,7 +684,7 @@ const keywordOption = computed(() => {
     <div class="chart-grid">
       <ChartCard
         title="每日消息趋势（近 30 天）"
-        subtitle="每日互动频次起伏与情绪共振峰值"
+        subtitle="每日互动频次起伏"
         :badge="maxDailyCount ? `单日峰值 ${maxDailyCount} 条` : ''"
         :option="dailyOption"
         :loading="loading"
@@ -732,7 +732,7 @@ const keywordOption = computed(() => {
 
       <ChartCard
         title="消息占比（近 30 天）"
-        subtitle="双方情绪供给与互动主动性份额"
+        subtitle="双方消息条数与占比"
         badge="份额构成"
         :option="activityOption"
         :loading="loading"

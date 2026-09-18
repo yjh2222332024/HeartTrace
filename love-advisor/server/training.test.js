@@ -316,3 +316,54 @@ test('训练路由：用户抢先发言会撤销待发主动消息', async t => 
   assert.equal(second.data.session.pendingInitiative, null)
   assert.equal(second.data.session.initiativeUsed, 0)
 })
+
+test('训练路由：对方模型失败后重试不会重复写入同一条用户消息', async t => {
+  const workspace = createCase({ title: '失败重试训练', sessionIds: ['session_training_retry'] })
+  const app = express()
+  app.use(express.json())
+  let simulatorCalls = 0
+  registerTrainingRoutes(app, {
+    getEnv: () => ({ BASE_URL: 'https://model.example/v1', API_KEY: 'secret', BASE_MODEL: 'test' }),
+    buildEvidencePack: async () => null,
+    skillRuntime: { promptConfigFor: () => ({ ok: true, prompt: '训练军师' }) },
+    streamChat: async ({ messages }) => {
+      const system = messages[0]?.content || ''
+      if (system.includes('对方模拟器')) {
+        simulatorCalls += 1
+        // 第一次是开场，第二次模拟上游超时，第三次重试成功。
+        if (simulatorCalls === 2) throw new Error('模拟模型暂时不可用')
+        return { content: JSON.stringify({ delayMinutes: 0, messages: [{ content: '收到，我想听听你的想法' }] }) }
+      }
+      return { content: JSON.stringify({ title: '提示', body: '先接住对方情绪' }) }
+    },
+  })
+  const server = app.listen(0, '127.0.0.1')
+  await new Promise(resolve => server.once('listening', resolve))
+  t.after(() => new Promise(resolve => server.close(resolve)))
+  const base = `http://127.0.0.1:${server.address().port}`
+  const post = async (pathname, body = {}) => {
+    const response = await fetch(base + pathname, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    })
+    return response.json()
+  }
+
+  const created = await post('/api/training/sessions', {
+    caseId: workspace.id,
+    scenario: { title: '失败后重试', opening: '今天怎么样？' },
+  })
+  const id = created.data.id
+  const first = await post(`/api/training/sessions/${id}/turn`, { content: '我今天有点累' })
+  assert.equal(first.ok, false)
+  assert.equal(first.error, '模拟模型暂时不可用')
+  const failed = getTrainingSession(id)
+  assert.equal(failed.pendingTurn.state, 'failed')
+  assert.equal(failed.messages.filter(message => message.role === 'me').length, 1)
+
+  const retry = await post(`/api/training/sessions/${id}/turn`, { content: '我今天有点累' })
+  assert.equal(retry.ok, true)
+  const completed = getTrainingSession(id)
+  assert.equal(completed.pendingTurn, null)
+  assert.equal(completed.messages.filter(message => message.role === 'me').length, 1)
+  assert.equal(completed.messages.filter(message => message.role === 'peer').length, 2)
+})

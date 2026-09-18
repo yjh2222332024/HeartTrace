@@ -464,15 +464,25 @@ export function registerTrainingRoutes(app, {
   })
 
   app.post('/api/training/sessions/:id/turn', async (req, res) => {
+    let turnSession = null
+    let turnContent = ''
+    let turnStarted = false
     try {
       const session = getTrainingSession(req.params.id)
+      turnSession = session
       if (!session) return res.status(404).json({ ok: false, error: '训练会话不存在' })
       if (session.state !== 'active') return res.status(409).json({ ok: false, error: '该训练已结束，请开始新的一局' })
       const content = asText(req.body?.content, 1200)
+      turnContent = content
       if (!content) return res.status(400).json({ ok: false, error: '请输入要发送的内容' })
       // 用户先说话时，旧的主动补发已不再保证上下文正确，必须先撤销。
-      cancelTrainingInitiative(session.id)
-      appendTrainingMessages(session.id, [{ role: 'me', content, simulatedMinutes: session.simulatedMinutes }])
+      const retryingFailedTurn = session.pendingTurn?.state === 'failed' && session.pendingTurn.content === content
+      if (!retryingFailedTurn) {
+        cancelTrainingInitiative(session.id)
+        appendTrainingMessages(session.id, [{ role: 'me', content, simulatedMinutes: session.simulatedMinutes }])
+      }
+      updateTrainingSession(session.id, { pendingTurn: { content, state: 'pending' } })
+      turnStarted = true
       const current = getTrainingSession(session.id)
       const allowInitiative = canProposeInitiative(current)
       const raw = await callJsonModel(streamChat, getEnv(), [
@@ -488,9 +498,13 @@ export function registerTrainingRoutes(app, {
           deliverySeconds: randomInitiativeDeliverySeconds(random),
         }, { now: now() })
       }
-      const updated = updateTrainingSession(current.id, { privateState: turn.privateState })
+      updateTrainingSession(current.id, { privateState: turn.privateState, pendingTurn: null })
+      const updated = getTrainingSession(current.id)
       res.json({ ok: true, data: { session: updated, delayMinutes: turn.delayMinutes, messages: updated.messages.slice(-turn.messages.length) } })
     } catch (error) {
+      if (turnStarted && turnSession && turnContent) {
+        try { updateTrainingSession(turnSession.id, { pendingTurn: { content: turnContent, state: 'failed' } }) } catch { /* 保留原始错误 */ }
+      }
       res.status(400).json({ ok: false, error: error.message })
     }
   })

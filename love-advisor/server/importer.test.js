@@ -100,6 +100,24 @@ test('importer: 分片器按 双约束切片且时间升序', async () => {
   }
 })
 
+test('importer: 跨页按完整时间线排序，并保留长消息全文与消息 ID', async () => {
+  const newest = [
+    { id: 'new-2', time: '2026-09-18T10:00:00', senderName: '小美', content: '较新的消息' },
+    { id: 'new-3', time: '2026-09-18T11:00:00', senderName: '我本人', content: '最后一条' },
+  ]
+  const oldest = [
+    { id: 'old-1', time: '2026-09-17T10:00:00', senderName: '我本人', content: '最早的一条' },
+    { id: 'old-2', time: '2026-09-17T11:00:00', senderName: '小美', content: '长消息'.repeat(500) },
+  ]
+  const chunks = await buildChunks('s', '我本人', async (_sid, cursor) => cursor
+    ? { items: oldest, meta: { hasMore: false } }
+    : { items: newest, meta: { hasMore: true, nextCursor: 'older' } })
+  const text = chunks.map(chunk => chunk.text).join('\n')
+  assert.ok(text.indexOf('最早的一条') < text.indexOf('较新的消息'))
+  assert.match(text, /\[old-2\]/)
+  assert.equal((text.match(/长消息/g) || []).length, 500)
+})
+
 test('importer: digest/final 清洗截断', () => {
   const d = sanitizeDigest({ events: [{ date: 'x', event: '  事件  ' }], herTraits: Array(20).fill('t'), stageHint: '非法' })
   assert.equal(d.events[0].event, '事件')

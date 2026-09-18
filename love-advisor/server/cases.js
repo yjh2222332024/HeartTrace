@@ -26,11 +26,20 @@ export function registerCaseRoutes(app, { startForSession, cancelJobsForCase } =
     }
   })
 
-  app.post('/api/cases/:id/confirm-profile', (req, res) => {
+  app.post('/api/cases/:id/confirm-profile', async (req, res) => {
     try {
       const item = confirmWorkspaceProfile(req.params.id, req.body || {})
       if (!item) return res.status(404).json({ ok: false, error: '案例不存在' })
-      res.json({ ok: true, data: item })
+      let job = null
+      if (item.profileStatus?.reanalysisRequired && startForSession && item.sessionIds?.[0]) {
+        job = (await startForSession(item.sessionIds[0], {
+          caseId: item.id,
+          force: true,
+          ownerName: item.profileStatus.ownerName,
+          peerName: item.profileStatus.peerName,
+        })).job
+      }
+      res.json({ ok: true, data: item, job })
     } catch (e) {
       res.status(400).json({ ok: false, error: e.message })
     }
